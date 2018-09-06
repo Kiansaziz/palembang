@@ -1,0 +1,52 @@
+
+
+
+
+<section class="content-header" >
+	<h1>
+		Data Jenis
+		<small>Detail Data Jenis</small>
+	</h1>
+	<ol class="breadcrumb">
+		<li><a href="#/"><i class="fa fa-dashboard"></i></a></li>
+		<li><a href="#/jenis">Jenis</a></li>
+		<li class="active">Data Jenis</li>
+	</ol>
+</section>
+
+<section class="content">
+			<div class="row">
+				<div class="nav-tabs-custom">
+					<ul class="nav nav-tabs">
+						<li class="active">
+							<a data-target="#settings" data-toogle="tab">FROM EDIT JENIS PEKERJAAN</a>
+						</li>
+					</ul>
+					<div class="tab-content">
+						<div class="active tab-pane" id="settings">
+							<section class="content">
+								<div class="row">
+									<div class="box-body">
+										<form name="form" ng-submit="updateJenis()" novalidate>
+											<div class="col-md-6">
+													<div class="form-group">
+														<input type="hidden" name="id" ng-model="jenis.id">
+														<label>Jenis Pekerjaan<b class="text-danger">*</b></label>
+														<input type="text" name="jenisPekerjaan" class="form-control" ng-model="jenis.jenisPekerjaan" required><span ng-show="form.jenis.$error.required && !form.jenis.$pristine"><i class="text-danger">Jenis Pekerjaan Harus Di isi</i></span>
+													</div>
+												<div class="col-md-6" style="margin-left: -15px;">
+													<div class="form-group">
+														<button type="submit" class="btn btn-danger" ng-disabled="form.$invalid">Submit</button>
+														<img ng-show="loadForm" src="../assets/images/line-load.gif" alt="">
+													</div>
+												</div>
+											</div>
+										</form>
+									</div>
+								</div>
+							</section>
+						</div>
+					</div>
+				</div>
+			</div>
+</section>

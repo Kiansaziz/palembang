@@ -1,0 +1,26 @@
+<section class="content">
+	<div class="row">
+		<div class="box-body">
+			<form name="form" ng-submit="addJenis(dataInsert)" novalidate>
+				<div class="col-md-6">
+					<div class="form-group">
+						<label>JENIS PEKERJAAN <b class="text-danger">*</b></label>
+						<input type="text" name="jenisPekerjaan" placeholder="Jenis Pekerjaan" class="form-control" ng-model="dataInsert.jenisPekerjaan" required>
+						<span ng-show="form.jenisPekerjaan$invalid && !form.jenisPekerjaan.$pristine"><i class="text-danger">Harus Di Isi</i></span>
+					</div>
+					<div class="form-group">
+						<button type="submit" class="btn btn-danger" ng-disabled="form.$invalid">Submit</button>
+					</div>
+				</div>
+				<!-- col-md-6 -->
+			</form>
+			<!-- form -->
+		</div>
+		<!-- box-body -->
+		<div class="box-footer">
+			FORM TAMBAH JENIS PEKERJAAN
+		</div>
+	</div>
+	<!-- row -->
+</section>
+<!-- content -->

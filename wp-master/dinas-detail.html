@@ -1,0 +1,91 @@
+<!-- Content Header (Page header) -->
+<section class="content-header">
+  <h1>
+    Data Dinas
+    <small>Detail Data Dinas</small>
+  </h1>
+  <ol class="breadcrumb">
+    <li><a href="#/"><i class="fa fa-dashboard"></i> Dashboard</a></li>
+    <li><a href="#/jenis"> Data Dinas</a></li>
+  </ol>
+</section>
+
+<!-- Main content -->
+<section class="content">
+
+  <div class="row">
+    <div class="col-md-12">
+      <div class="nav-tabs-custom">
+
+        <ul class="nav nav-tabs">
+          <li class="active"><a data-target="#settings" data-toggle="tab">Settings</a></li>
+        </ul>
+
+        <div class="tab-content">
+
+          <div class="active tab-pane" id="settings">
+
+            <div class="box-header with-border text-center">
+              <h3 class="box-title">FROM EDIT DATA DINAS</h3>
+            </div>
+          <section class="content">
+            <div class="row">
+            
+            <div class="box-body"></div>
+              <form name="form" ng-submit="updateDinas()" novalidate>
+                
+                  <div class="col-md-6">
+                     <div class="form-group">
+                        <label>Dinas <b class="text-danger">*</b></label>
+                        <input type="text" name="dinas" class="form-control" ng-model="dinas.dinas" required>
+                        <span ng-show="form.dinas.$error.required && !form.dinas.$pristine"><i class="text-danger">Nama Harus Di Isi</i></span>
+                      </div>
+                  </div>
+                
+
+                <!-- FORM TAMBAHAN UNTUK KORWIL ********************************************************************************************************************************* -->
+
+                
+                  <div class="col-md-12">
+                      <div class="form-group">
+                          <button type="submit" class="btn btn-danger" ng-disabled="form.$invalid">Submit</button>
+                          <img ng-show="loadForm" src="../assets/images/line-load.gif" alt="">
+                      </div>
+                  </div>
+                </div><!-- row -->
+              </form>
+            </div>
+            <!-- box-body -->
+          </div>
+          <!-- row -->
+          </section>
+          </div>
+          <!-- /.tab-pane -->
+
+        </div>
+        <!-- /.tab-content -->
+      </div>
+      <!-- /.nav-tabs-custom -->
+    </div>
+    <!-- /.col -->
+  </div>
+  <!-- /.row -->
+
+</section>
+<!-- /.content -->
+<!-- 
+$scope.updateDinas = function(){
+        $http.post('../api/master/dinas.php?type=update', {
+          'id' : $scope.lihatd.id,
+          'dinas' : $scope.lihatd.dinas,
+        }).success(function(response){
+          if (response.status == 'success') {
+            window.location.href = '#/dinas';
+            toastr.success(response.keterangan);
+          } else if (response.status != 'success') {
+            toastr.warning(response.keterangan);
+          } else {
+            toastr.warning('Terjadi Kesalahan');
+          }
+        });
+      } -->
