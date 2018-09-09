@@ -7,7 +7,7 @@
 
 
 
-      var dataHistory = function() {
+      var dataHistoryDetail = function() {
         var onSuccess = function(response){
           if (response.data == 'null') {
             $location.path('/project-history');
@@ -20,9 +20,9 @@
         var onError = function(reason){
           toastr.error('Terjadi Kesalahan');
         }
-        $http.post("../api/master/project.php?type=dataProject",{"id":$routeParams.id}).then(onSuccess, onError);
+        $http.post("../api/master/project-history.php?type=dataHistoryDetail",{"id":$routeParams.id}).then(onSuccess, onError);
       }
-      dataHistory();
+      dataHistoryDetail();
 
          $scope.updateProject = function(){
         $http.post('../api/master/project-history.php?type=update', {

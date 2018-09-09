@@ -42,6 +42,28 @@ if($type == 'dataHistory')
   echo json_encode($outp);
 }
 
+if($type == 'dataHistoryDetail')
+{
+  $post             = json_decode(file_get_contents("php://input"));
+  $id                = $conn->real_escape_string($post->id);
+  $proses           = $conn->query("SELECT * FROM tbl_project a
+                          INNER JOIN tbl_project_history b ON a.idProject = b.idProject 
+                          INNER JOIN tbl_user c ON a.idUser=c.id
+                          INNER JOIN tbl_kecamatan d ON a.idKec=d.idKec
+                          INNER JOIN tbl_kelurahan e ON a.idKel=e.idKel
+                          INNER JOIN tbl_dinas f ON a.idDinas=f.id
+                          INNER JOIN tbl_jenis_pekerjaan g ON a.idJenisPekerjaan=g.id
+                          INNER JOIN tbl_status h ON a.status=h.id WHERE b.idProjectHistory = '$id'");
+  if ($proses->num_rows > 0) {
+    while($rs = $proses->fetch_object()) {
+        $outp = $rs;
+    }
+  } else {
+    $outp=null;
+  }
+  echo json_encode($outp);
+}
+
 if ($type == 'insert') {
   $post     = json_decode(file_get_contents("php://input"));
   $jenisPekerjaan    = $conn->real_escape_string(isset($post->jenisPekerjaan)?$post->jenisPekerjaan : '');
@@ -85,19 +107,46 @@ if($type == 'dataHistoryLihat')
 
 
 
+if($type == 'dataProjectDetailHistory')
+{
+  $post   = json_decode(file_get_contents("php://input"));
+  $id     = $conn->real_escape_string($post->id);
+  $proses = $conn->query("SELECT * FROM tbl_project_history a
+                          INNER JOIN tbl_project b ON a.idProject=b.idProject 
+                          INNER JOIN tbl_user c ON b.idUser=c.id
+                          INNER JOIN tbl_kecamatan d ON b.idKec=d.idKec
+                          INNER JOIN tbl_kelurahan e ON b.idKel=e.idKel
+                          INNER JOIN tbl_dinas f ON b.idDinas=f.id
+                          INNER JOIN tbl_jenis_pekerjaan g ON b.idJenisPekerjaan=g.id
+                          INNER JOIN tbl_status h ON b.status=h.id 
+                          WHERE a.idProjectHistory='$id'
+                          "
+                        );
+  if ($proses->num_rows > 0) {
+    while($rs = $proses->fetch_object()) {
+        $outpArr[] = $rs;
+    }
+  } else {
+    $outpArr[]=null;
+  }
+  echo json_encode($outpArr);
+}
+
+
+
 if ($type == 'update') {
   $post       = json_decode(file_get_contents("php://input"));
   $id         = $conn->real_escape_string(isset($post->id) ? $post->id : '');
   $ketSurvei  = $conn->real_escape_string(isset($post->ketSurvei) ? $post->ketSurvei : '');
-  $persen     = $conn->real_escape_string(isset($post->ketSurvei) ? $post->persen : '');
+  $persen     = $conn->real_escape_string(isset($post->persen) ? $post->persen : '');
   $query      = "UPDATE tbl_project SET ketSurvei = '$ketSurvei' , persen = '$persen', dateEntry=NOW(), time=NOW() WHERE idProject = '$id'";
   $runQuery = $conn->query($query);
   if ($runQuery) {
           $post       = json_decode(file_get_contents("php://input"));
           $id         = $conn->real_escape_string(isset($post->id) ? $post->id : '');
           $ketSurvei  = $conn->real_escape_string(isset($post->ketSurvei) ? $post->ketSurvei : '');
-          $persen     = $conn->real_escape_string(isset($post->ketSurvei) ? $post->persen : '');
-          $query2     = "INSERT INTO tbl_project_history (idProjectHistory, idProject, ketSurvei, persen,dateEntry,time) VALUES ('','$id','$ketSurvei','$persen',NOW(),NOW())";
+          $persen     = $conn->real_escape_string(isset($post->persen) ? $post->persen : '');
+          $query2     = "INSERT INTO tbl_project_history (idProjectHistory, idProject, ketSurvei, persentase,dateEntry,time) VALUES ('','$id','$ketSurvei','$persen',NOW(),NOW())";
           $runQuery2 = $conn->query($query2);
     $outp .= '{"status":"success",';
     $outp .= '"keterangan":"Berhasil Mengubah Data"}';
@@ -109,9 +158,9 @@ if ($type == 'update') {
 }
 
 if ($type == 'delete') {
-  $post        = json_decode(file_get_contents("php://input"));
-  $id          = $conn->real_escape_string(isset($post->id) ? $post->id : '');
-  $query      = "DELETE FROM tbl_jenis_pekerjaan WHERE id = '$id'";
+  $post                      = json_decode(file_get_contents("php://input"));
+  $idProjectHistory          = $conn->real_escape_string(isset($post->idProjectHistory) ? $post->idProjectHistory : '');
+  $query      = "DELETE FROM tbl_project_history WHERE idProjectHistory = '$idProjectHistory'";
   if ($conn->query($query)) {
     $outp .= '{"status":"success",';
     $outp .= '"keterangan":"Berhasil Menghapus Data"}';

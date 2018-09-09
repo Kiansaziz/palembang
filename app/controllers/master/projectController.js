@@ -205,7 +205,10 @@
           $http.post('../api/master/project.php?type=delete',detail).success(function(data){
             if (data.status == 'success') {
               toastr.success(data.keterangan);
-              projects();
+                projects();
+                projectsOnProgresss();
+                projectsOverdus();
+                projectsSelesais();
             } else if (data.status != 'success') {
               toastr.warning(data.keterangan);
             } else {

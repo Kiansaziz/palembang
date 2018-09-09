@@ -208,8 +208,6 @@ if($type == 'insert')
   $mulai    = $conn->real_escape_string(isset($post->mulai) ? $post->mulai : '');
   $selesai    = $conn->real_escape_string(isset($post->selesai) ? $post->selesai : '');
   $persen    = $conn->real_escape_string(isset($post->persen) ? $post->persen : '');
-  date_default_timezone_set('Asia/Jakarta');
-  $date = date("Y-m-d H:i:s");
   try {
      $DecodedDataArray = JWT::decode(
        $jwt,
@@ -218,7 +216,7 @@ if($type == 'insert')
      );
      $dari     = $DecodedDataArray->data->id;
      $query    = "INSERT INTO tbl_project (idProject,idKec,idKel,idUser,idDinas,idJenisPekerjaan,ketSurvei,mulai,selesai,persen,dateEntry,time,status) VALUES 
-     ('', '$idKec', '$idKel', '$dari','$idDinas','$idJenisPekerjaan','$ketSurvei','$mulai','$selesai','$persen','$date','$date','2')";
+     ('', '$idKec', '$idKel', '$dari','$idDinas','$idJenisPekerjaan','$ketSurvei','$mulai','$selesai','$persen',NOW(),NOW(),'2')";
      $runQuery = $conn->query($query);
 
      if ($runQuery) {
@@ -297,6 +295,27 @@ if($type == 'dataProjectDetail')
   echo json_encode($outp);
 }
 
+if($type == 'dataProjectDetailHistory')
+{
+  $post   = json_decode(file_get_contents("php://input"));
+  $id     = $conn->real_escape_string($post->id);
+  $proses = $conn->query("SELECT * FROM tbl_project_history a
+                          INNER JOIN tbl_project b ON a.idProject=b.idProject 
+                          INNER JOIN tbl_user c ON b.idUser=c.id
+                          INNER JOIN tbl_kecamatan d ON b.idKec=d.idKec
+                          INNER JOIN tbl_kelurahan e ON b.idKel=e.idKel
+                          INNER JOIN tbl_dinas f ON b.idDinas=f.id
+                          INNER JOIN tbl_jenis_pekerjaan g ON b.idJenisPekerjaan=g.id
+                          INNER JOIN tbl_status h ON b.status=h.id 
+                          WHERE a.idProject='$id'");
+  if ($proses->num_rows > 0) {
+    $outp = $proses->fetch_object();
+  } else {
+    $outp=null;
+  }
+  echo json_encode($outp);
+}
+
 if($type == 'dataProjectHistory')
 {
   $post   = json_decode(file_get_contents("php://input"));
@@ -348,6 +367,11 @@ if ($type == 'delete') {
   $idProject          = $conn->real_escape_string(isset($post->idProject) ? $post->idProject : '');
   $query      = "DELETE FROM tbl_project WHERE idProject = '$idProject'";
   if ($conn->query($query)) {
+           $post        = json_decode(file_get_contents("php://input"));
+           $idProject          = $conn->real_escape_string(isset($post->idProject) ? $post->idProject : '');
+           $query2      = "DELETE FROM tbl_project_history WHERE idProject = '$idProject'";
+           $runQuery = $conn->query($query2);
+
     $outp .= '{"status":"success",';
     $outp .= '"keterangan":"Berhasil Menghapus Data"}';
   } else {

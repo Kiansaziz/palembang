@@ -20,7 +20,7 @@
                     <th width="15%"><a ng-click="order('jenis')">Jenis Pekerjaan</a><input type="text" class="form-control input-sm" placeholder="..." ng-model="search.jenis" ng-show="mySearchFiled"></th>
                     <th width="10%"><a ng-click="order('status')">Mulai</a><input type="text" class="form-control input-sm" placeholder="..." ng-model="search.status" ng-show="mySearchFiled"></th>
                     <th width="10%"><a ng-click="order('status')">Selesai</a><input type="text" class="form-control input-sm" placeholder="..." ng-model="search.status" ng-show="mySearchFiled"></th>
-                    <th width="4%"><a ng-click="order('persen')">%</a><input type="text" class="form-control input-sm" placeholder="..." ng-model="search.persen" ng-show="mySearchFiled"></th>
+                    <th width="4%"><a ng-click="order('persentase')">%</a><input type="text" class="form-control input-sm" placeholder="..." ng-model="search.persentase" ng-show="mySearchFiled"></th>
                     <th width="10%"><a ng-click="order('status')">Status</a><input type="text" class="form-control input-sm" placeholder="..." ng-model="search.status" ng-show="mySearchFiled"></th>
                     <th width="6%"></th>
                   </tr>
@@ -34,11 +34,11 @@
                     <td>{{history.jenisPekerjaan}}</td>
                     <td>{{history.mulai}}</td>
                     <td>{{history.selesai}}</td>
-                    <td align="right">{{history.persen}}%</td>
+                    <td align="right">{{history.persentase}}%</td>
                     <td>{{history.status}}</td>
                     <td>
-                     <a title="Detail Data" href="#project/{{projectsOverdu.idProject}}"><span class="fa fa-eye"></span></a>
-                      <a ng-if="lihatd.id == user.id" title="Hapus Data" ng-click="deleteDinas(dinas)" class="pull-right danger"><span class="fa fa-trash-o"></span></a>
+                     <a title="Detail Data" href="#project-history-detail/{{history.idProjectHistory}}"><span class="fa fa-eye"></span></a>
+                      <a title="Hapus Data" ng-click="deleteHistory(history)" class="pull-right danger"><span class="fa fa-trash-o"></span></a>
                     </td>
 
                   </tr>

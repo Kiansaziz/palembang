@@ -27,7 +27,7 @@
       $scope.updateDinas = function(){
         $http.post('../api/master/dinas.php?type=update', {
           'id' : $scope.dinas.id,
-          'dinas' : $scope.kecamatan.kecamatan,
+          'dinas' : $scope.dinas.dinas,
         }).success(function(response){
           if (response.status == 'success') {
             window.location.href = '#/dinas';

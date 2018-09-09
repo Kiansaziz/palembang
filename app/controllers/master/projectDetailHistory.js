@@ -1,13 +1,13 @@
 (function(){
 
-    app.controller('projectHistoryController', function($scope, $routeParams, $http, toastr, filterFilter, $location){
+    app.controller('projectDetailHistory', function($scope, $routeParams, $http, toastr, filterFilter, $location){
 
       // pencarian di hidden agar tidak lama load page
       $scope.search = {};
 
 
 
-      var dataHistory = function() {
+      var dataHistoryDetail = function() {
         var onSuccess = function(response){
           if (response.data == 'null') {
             $location.path('/project-history');
@@ -20,9 +20,9 @@
         var onError = function(reason){
           toastr.error('Terjadi Kesalahan');
         }
-        $http.post("../api/master/project-history.php?type=dataHistory",{"id":$routeParams.id}).then(onSuccess, onError);
+        $http.post("../api/master/project-history.php?type=dataHistoryDetail",{"id":$routeParams.id}).then(onSuccess, onError);
       }
-      dataHistory();
+      dataHistoryDetail();
 
       var dataHistoryLihat = function() {
         var onSuccess = function(response){

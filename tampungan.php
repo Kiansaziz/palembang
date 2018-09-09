@@ -218,3 +218,32 @@
             
             <img id="preview2" src="" alt="" width="320px"/>
            </div> -->
+
+
+           <!-- 
+              <div class="col-xs-6 col-xs-offset-3">
+                <div class="table table-responsive">
+                  <table class="table table-bordered">
+                    <thead>
+                      <tr>
+                        <th width="4%">No</th>
+                        <th width="95%" style="text-align: center;">Dokumentasi Gambar Saat Survei Berlangsung</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>1</td>
+                        <td align="center"><img ng-src="../assets/images/{{project.gambar1}}" width="100%"></td>
+                      </tr>
+                      <tr>
+                        <td>2</td>
+                        <td align="center"><img ng-src="../assets/images/{{project.gambar2}}" width="100%"></td>
+                      </tr>
+                      <tr>
+                        <td>3</td>
+                        <td align="center"><img ng-src="../assets/images/{{project.gambar3}}" width="100%"></td>
+                      </tr>
+                    </tbody>
+                </table>
+                </div>
+              </div> -->
