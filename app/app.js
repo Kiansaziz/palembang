@@ -40,6 +40,16 @@ var app = angular.module('app', ['ngRoute', 'toastr','angularUtils.directives.di
         controller    : "jenisDetailController",
         activetab     : "jenis"
       })
+      .when("/project",{
+        templateUrl   : "project.html",
+        controller    : "projectController",
+        activetab     : 'project'
+      })
+      .when("/project/:id",{
+        templateUrl   : "project-detail.html",
+        controller    : "projectDetailController",
+        activetab     : 'project'
+      })
       .when("/info", {
           templateUrl : "info.html",
           // controller  : "infoController",

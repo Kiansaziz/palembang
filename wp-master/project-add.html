@@ -1,0 +1,211 @@
+<!-- Content Header (Page header) -->
+<section class="content-header">
+  <h1>
+    Kuesioner
+    <small>Data Kuesioner</small>
+  </h1>
+  <ol class="breadcrumb">
+    <li><a href="#/"><i class="fa fa-dashboard"></i> Dashboard</a></li>
+    <li class="active">Kuesioner</li>
+  </ol>
+</section>
+
+
+<!-- Main content -->
+<section class="content">
+  <div class="row">
+    <div class="col-md-12">
+
+
+      <div class="box box-primary">
+        <div class="box-body">
+          <div>
+             <form name="form" ng-submit="addProject(dataProject)" novalidate>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>Kecamatan</label>
+                <select class="form-control" name="idKec" ng-model="dataProject.idKec" ng-change="changeKec(dataProject)" required="">
+                  <option value="">-Pilih</option>
+                  <option ng-repeat="kecamatan in main.kecamatans | orderBy:'kecamatan'" value="{{kecamatan.idKec}}">{{kecamatan.kecamatan}}</option>
+                </select>
+                <span ng-show="form.idKec.$invalid && !form.idKec.$pristine"><i class="text-danger">Harus Di Isi</i></span>
+
+                
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>Kelurahan</label>
+                <select class="form-control" name="idKel" ng-model="dataProject.idKel" required>
+                  <option value="">-Pilih</option>
+                  <option ng-repeat="kelurahan in main.kelurahans | filter:{'idKec':dataProject.idKec}:true | orderBy:'kelurahan'" value="{{kelurahan.idKel}}">{{kelurahan.kelurahan}}</option>
+                </select>
+                 <span ng-show="form.idKel.$invalid && !form.idKel.$pristine"><i class="text-danger">Harus Di Isi</i></span>
+              </div>
+            </div> 
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>Dinas Pemerintahan</label>
+                <select class="form-control" name="dinas" ng-model="dataProject.idDinas" required="">
+                  <option value="">-Pilih</option>
+                  <option ng-repeat="dinas in dinass" value="{{dinas.id}}">{{dinas.dinas}}</option>
+                </select>
+               <span ng-show="form.dinas.$invalid && !form.dinas.$pristine"><i class="text-danger">Harus Di Isi</i></span>
+              </div>
+            </div> 
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>Jenis Pekerjaan</label>
+                <select class="form-control" name="jenisPekerjaan" ng-model="dataProject.idJenisPekerjaan" required>
+                  <option value="">-Pilih</option>
+                  <option ng-repeat="jenis in jeniss" value="{{jenis.id}}">{{jenis.jenisPekerjaan}}</option>
+                </select>
+               <span ng-show="form.jenisPekerjaan.$invalid && !form.jenisPekerjaan.$pristine"><i class="text-danger">Harus Di Isi</i></span>
+              </div>
+            </div> 
+            <div class="col-md-12" style="margin-bottom: 20px;">
+              <label>Keterangan Survei</label>
+              <textarea type="text" name="ketSurvei" ng-model="dataProject.ketSurvei" class="form-control" placeholder="Keterangan Survei......." required=""></textarea>
+              <span ng-show="form.ketSurvei.$invalid && !form.ketSurvei.$pristine"><i class="text-danger">Harus Di Isi</i></span>
+            </div>
+           <div class="col-md-12" style="margin-bottom: 20px;"> 
+              <input type="file" accept="image/*" file-input="files" name="gambar1" ng-model="dataProject.gambar1" onchange="tampilkanPreview(this,'preview')" />
+            <!--element image untuk merender  ampilkan preview-->
+            <img id="preview" src="" alt="" width="320px"/>
+           </div>
+           <div class="col-md-12" style="margin-bottom: 20px;"> 
+              <input type="file" accept="image/*" file-input="files" name="gambar2" ng-model="dataProject.gambar2"  onchange="tampilkanPreview1(this,'preview1')" />
+            <!--element image untuk menampilkan preview-->
+            <img id="preview1" src="" alt="" width="320px"/>
+           </div>
+           <div class="col-md-12" style="margin-bottom: 20px;"> 
+              <input type="file" accept="image/*" file-input="files" name="gambar3" ng-model="dataProject.gambar3" onchange="tampilkanPreview2(this,'preview2')" />
+            <!--element image untuk menampilkan preview-->
+            <img id="preview2" src="" alt="" width="320px"/>
+           </div>
+            <div class="col-md-4">
+              <label>Mulai</label>
+              <input type="date" name="mulai" ng-model="dataProject.mulai" class="form-control" placeholder="persentase" required="">
+              <span ng-show="form.mulai.$invalid && !form.mulai.$pristine"><i class="text-danger">Harus Di Isi</i></span>
+            </div>
+             <div class="col-md-4">
+              <label>Selesai</label>
+              <input type="date" name="selesai" ng-model="dataProject.selesai" class="form-control" placeholder="persentase" required="">
+             <span ng-show="form.selesai.$invalid && !form.selesai.$pristine"><i class="text-danger">Harus Di Isi</i></span>
+            </div>
+             <div class="col-md-2">
+              <label>Persen</label>
+              <input type="text" name="persen" ng-model="dataProject.persen" class="form-control" placeholder="persentase" required="">
+             <span ng-show="form.persen.$invalid && !form.persen.$pristine"><i class="text-danger">Harus Di Isi</i></span>
+            </div>
+            <div class="col-md-12" style="margin-top: 20px;">
+              <button type="submit" class="btn btn-danger" ng-disabled="form.$invalid">Submit</button>
+            </div>
+          </form>
+        </div>
+        <!-- /.box-body -->
+      </div>
+      <!-- /.box box-primary-->
+
+
+    </div>
+    <!-- /.col 12 -->
+  </div>
+  <!-- /.row -->
+</section>
+<!-- /.content -->
+<script>
+            function tampilkanPreview(gambar,idpreview){
+//                membuat objek gambar
+                var gb = gambar.files;
+                
+//                loop untuk merender gambar
+                for (var i = 0; i < gb.length; i++){
+//                    bikin variabel
+                    var gbPreview = gb[i];
+                    var imageType = /image.*/;
+                    var preview=document.getElementById(idpreview);            
+                    var reader = new FileReader();
+                    
+                    if (gbPreview.type.match(imageType)) {
+//                        jika tipe data sesuai
+                        preview.file = gbPreview;
+                        reader.onload = (function(element) { 
+                            return function(e) { 
+                                element.src = e.target.result; 
+                            }; 
+                        })(preview);
+ 
+    //                    membaca data URL gambar
+                        reader.readAsDataURL(gbPreview);
+                    }else{
+//                        jika tipe data tidak sesuai
+                        alert("Type file tidak sesuai. Khusus image.");
+                    }
+                   
+                }    
+            }
+
+            function tampilkanPreview1(gambar,idpreview){
+//                membuat objek gambar
+                var gb = gambar.files;
+                
+//                loop untuk merender gambar
+                for (var i = 0; i < gb.length; i++){
+//                    bikin variabel
+                    var gbPreview = gb[i];
+                    var imageType = /image.*/;
+                    var preview1=document.getElementById(idpreview);            
+                    var reader = new FileReader();
+                    
+                    if (gbPreview.type.match(imageType)) {
+//                        jika tipe data sesuai
+                        preview1.file = gbPreview;
+                        reader.onload = (function(element) { 
+                            return function(e) { 
+                                element.src = e.target.result; 
+                            }; 
+                        })(preview1);
+ 
+    //                    membaca data URL gambar
+                        reader.readAsDataURL(gbPreview);
+                    }else{
+//                        jika tipe data tidak sesuai
+                        alert("Type file tidak sesuai. Khusus image.");
+                    }
+                   
+                }    
+            }
+
+            function tampilkanPreview2(gambar,idpreview){
+//                membuat objek gambar
+                var gb = gambar.files;
+                
+//                loop untuk merender gambar
+                for (var i = 0; i < gb.length; i++){
+//                    bikin variabel
+                    var gbPreview = gb[i];
+                    var imageType = /image.*/;
+                    var preview2=document.getElementById(idpreview);            
+                    var reader = new FileReader();
+                    
+                    if (gbPreview.type.match(imageType)) {
+//                        jika tipe data sesuai
+                        preview2.file = gbPreview;
+                        reader.onload = (function(element) { 
+                            return function(e) { 
+                                element.src = e.target.result; 
+                            }; 
+                        })(preview2);
+ 
+    //                    membaca data URL gambar
+                        reader.readAsDataURL(gbPreview);
+                    }else{
+//                        jika tipe data tidak sesuai
+                        alert("Type file tidak sesuai. Khusus image.");
+                    }
+                   
+                }    
+            }
+        </script>
+

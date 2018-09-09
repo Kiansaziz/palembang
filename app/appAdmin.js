@@ -25,6 +25,11 @@ var app = angular.module('app', ['ngRoute', 'toastr','angularUtils.directives.di
           controller  : "pesanController",
           activetab   : 'pesan'
       })
+      .when("/project",{
+          templateUrl : "project.html",
+          controller  : "projectController",
+          activetab   : 'project'
+      })
       .when("/dokumentasi", {
           templateUrl : "../wp-master/dokumentasi.html",
           controller  : "dokumentasiController",

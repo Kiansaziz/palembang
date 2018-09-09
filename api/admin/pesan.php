@@ -105,6 +105,32 @@ if($type == 'dataPesanKhusus')
   echo json_encode($outpArr);
 }
 
+if($type == 'dataProject')
+{
+  $jwt    = $conn->real_escape_string(htmlentities($_GET['token']));
+  try {
+     $DecodedDataArray = JWT::decode(
+       $jwt,
+       $secretKey,
+       array(ALGORITHM)
+     );
+     $id       = $DecodedDataArray->data->id;
+     $proses = $conn->query("SELECT * FROM tbl_project");
+     if ($proses->num_rows > 0) {
+       while($rs = $proses->fetch_object()) {
+         $queryPenerima = $conn->query("SELECT nama FROM tbl_user WHERE id = '$rs->kepada'")->fetch_array();
+         $rs->penerima = $queryPenerima['nama'];
+         $outpArr[] = $rs;
+       }
+     } else {
+       $outpArr[]=null;
+     }
+  } catch (Exception $e) {
+    $outpArr[]=null;
+  }
+  echo json_encode($outpArr);
+}
+
 
 if($type == 'dataPesanBroadcast')
 {

@@ -11,7 +11,7 @@ $tokenId    = base64_encode(32);
 $issuedAt   = time();
 $notBefore  = $issuedAt + 0;
 $expire     = $notBefore + 7200;
-$serverName = 'http://survey-index-tppu-pt18.id/';
+$serverName = 'http://protype-dummy.com/';
 
 // SETTING GLOBAL VARIABLE
 $nowshort   = date('Y-m-d');

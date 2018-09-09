@@ -145,16 +145,16 @@
             <i ng-class="{'pull-right fa fa-arrow-circle-right': $route.current.activetab == 'chart'}"></i>
           </a>
         </li>
-        <li ng-class="{'active': $route.current.activetab == 'flow'}">
-          <a href="#flow">
-            <i class="fa fa-map-pin"></i> <span>Flow Tugas</span>
-            <i ng-class="{'pull-right fa fa-arrow-circle-right': $route.current.activetab == 'flow'}"></i>
-          </a>
-        </li>
         <li ng-class="{'active': $route.current.activetab == 'pesan'}">
           <a href="#pesan">
             <i class="fa fa-envelope-o"></i> <span>Pesan</span>
             <i ng-class="{'pull-right fa fa-arrow-circle-right': $route.current.activetab == 'pesan'}"></i>
+          </a>
+        </li>
+        <li ng-class="{'active': $route.current.activetab == 'project'}">
+          <a href="#project">
+            <i class="fa fa-map-pin"></i> <span>Project</span>
+            <i ng-class="{'pull-right fa fa-arrow-circle-right': $route.current.activetab == 'project'}"></i>
           </a>
         </li>
         <li ng-class="{'active': $route.current.activetab == 'dokumentasi'}">
@@ -339,29 +339,15 @@
 
 <script src="../app/appAdmin.js"></script>
 <script src="../app/directives/attrs.js"></script>
+
+
 <script src="../app/controllers/master/mainController.js"></script>
-
-
 <script src="../app/controllers/master/dashboardController.js"></script>
 <script src="../app/controllers/master/chartController.js"></script>
 <script src="../app/controllers/master/flowController.js"></script>
 <script src="../app/controllers/admin/pesanController.js"></script>
+<script src="../app/controllers/admin/projectController.js"></script>
 <script src="../app/controllers/master/dokumentasiController.js"></script>
-<script src="../app/controllers/master/chart/groupAController.js"></script>
-<script src="../app/controllers/master/chart/groupBController.js"></script>
-<script src="../app/controllers/master/chart/groupCController.js"></script>
-<script src="../app/controllers/master/chart/groupDController.js"></script>
-<script src="../app/controllers/master/chart/groupEController.js"></script>
-<script src="../app/controllers/master/chart/groupFController.js"></script>
-<script src="../app/controllers/master/chart/groupGController.js"></script>
-<script src="../app/controllers/master/chart/groupHController.js"></script>
-<script src="../app/controllers/master/chart/groupIController.js"></script>
-<script src="../app/controllers/master/chart/groupJController.js"></script>
-<script src="../app/controllers/master/chart/groupKController.js"></script>
-<script src="../app/controllers/master/chart/groupLController.js"></script>
-<script src="../app/controllers/master/chart/groupMController.js"></script>
-<script src="../app/controllers/master/chart/groupNController.js"></script>
-
 
 </body>
 </html>

@@ -1,0 +1,156 @@
+<style media="screen">
+  @media screen and (min-width: 1200px) {
+    .letter {
+      text-align: justify;
+      text-justify: inter-word;
+      line-height: 1.8;
+      padding-top : 30px;
+      padding-left : 150px;
+      padding-right : 150px;
+    }
+  }
+  @media print {
+    .letter {
+      line-height: 0.8;
+      font-size: 10pt;
+    }
+  }
+</style>
+<div class="content-print">
+
+<section class="content-header text-center">
+  <h1>
+    &nbsp;
+  </h1>
+  <ol class="breadcrumb">
+    <li><a href="#/"><i class="fa fa-dashboard"></i> Dashboard</a></li>
+    <li class="active">Data Hasil Survei</li>
+  </ol>
+</section>
+
+
+<!-- Main content -->
+<section class="content">
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="box box-primary">
+        <div class="box-body">
+
+          <div class="row letter">
+
+            <div class="col-xs-6">
+              <h3 class="box">FORM KETERANGAN HASIL SURVEI</h3>
+            </div>
+
+            <div class="col-xs-6">
+              <div class="pull-right" style="text-align: right; line-height: 1.2;">
+                <img ng-src="../assets/images/muara.png" alt="" width="80px" /> <br>
+                <small>
+                  Kabupaten Muara Enim <br>
+                  Graha Surveyor Indonesia <br>
+                  Jl. Jenderal Gatot Subroto Kav. 56 <br>
+                  Jakarta – 12950 <br>
+                  Telepon: (021) 5269459 ext. (229 dan 350) <br>
+                </small>
+              </div>
+            </div>
+
+            <div class="col-xs-6">
+              <table class="table table-bordered">
+                <tr>
+                  <td>Desa/Kelurahan</td>
+                  <td>: {{project.kelurahan}}</td>
+                </tr>
+                <tr>
+                  <td>Kecamatan</td>
+                  <td>: {{project.kecamatan}}</td>
+                </tr>
+                <tr>
+                  <td>Kabupaten</td>
+                  <td>: MUARA ENIM</td>
+                </tr>
+                <tr>
+                  <td>Mulai Project</td>
+                  <td>: {{project.mulai}}</td>
+                </tr>
+                <tr>
+                  <td>Batas Selesai Project</td>
+                  <td>: {{project.selesai}}</td>
+                </tr>
+              </table>
+            </div>
+
+             <div class="col-xs-12">
+              <div class="table table-responsive">
+              <table class="table table-bordered">
+                <thead>
+                  <tr>
+                    <th width="43%">Keterangan Hasil Survei</th>
+                    <th width="20%">Dinas Pemerintahan</th>
+                    <th width="15%">Jenis Pekerjaan</th>
+                    <th width="7%">%</th>
+                    <th width="15%">Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>{{project.ketSurvei}}</td>
+                    <td>{{project.dinas}}</td>
+                    <td>{{project.jenisPekerjaan}}</td>
+                    <td>{{project.persen}}%</td>
+                    <td>{{project.status}}</td>
+                  </tr>
+                </tbody>
+              </table>
+
+              <div class="col-xs-6 col-xs-offset-3">
+                <div class="table table-responsive">
+                  <table class="table table-bordered">
+                    <thead>
+                      <tr>
+                        <th width="4%">No</th>
+                        <th width="95%" style="text-align: center;">Dokumentasi Gambar Saat Survei Berlangsung</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>1</td>
+                        <td align="center"><img ng-src="../assets/images/{{project.gambar1}}" width="100%"></td>
+                      </tr>
+                      <tr>
+                        <td>2</td>
+                        <td align="center"><img ng-src="../assets/images/{{project.gambar2}}" width="100%"></td>
+                      </tr>
+                      <tr>
+                        <td>3</td>
+                        <td align="center"><img ng-src="../assets/images/{{project.gambar3}}" width="100%"></td>
+                      </tr>
+                    </tbody>
+                </table>
+                </div>
+              </div>
+
+
+            
+
+            </div>
+            <div class="col-xs-4 col-xs-offset-8">
+
+              <span class="pull-right">{{profile.ba.hari}}, {{profile.ba.tanggal}} {{profile.ba.bulan}} 2018</span>
+
+              <div class="col-xs-3 box text-center">
+                Auditor
+                <br><br><br><br><br>
+                <span class="text-muted">(...............................................)</span>
+              </div>
+
+            </div>
+
+          </div>
+
+        </div><!-- box-body -->
+      </div><!-- /.nav-tabs-custom -->
+    </div><!-- /.col -->
+  </div><!-- /.row -->
+</section>
+<!-- /.content -->

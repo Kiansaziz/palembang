@@ -1,5 +1,5 @@
 RewriteCond %{SERVER_PORT} 80
-RewriteRule ^(.*)$ https://www.survei-index-tppu-pt18.com/$1 [R,L]
+RewriteRule ^(.*)$ http://www.prototype-dummy.com/$1 [R,L]
 
 # directory browsing
 Options All -Indexes

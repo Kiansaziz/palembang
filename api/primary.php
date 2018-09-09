@@ -81,7 +81,7 @@ if($type == 'level')
 
 if($type == 'dataProvinsi')
 {
-   $proses     = $conn->query("SELECT * FROM tbl_prov");
+   $proses     = $conn->query("SELECT * FROM tbl_dinas");
    if ($proses->num_rows > 0) {
      while($rs = $proses->fetch_object()) {
          $outpArr[] = $rs;
@@ -94,7 +94,7 @@ if($type == 'dataProvinsi')
 
 if($type == 'dataKabupaten')
 {
-  $proses     = $conn->query("SELECT tbl_kab.*, tbl_prov.provinsi FROM tbl_kab LEFT JOIN tbl_prov ON tbl_kab.id_prov=tbl_prov.id");
+  $proses     = $conn->query("SELECT * FROM tbl_jenis_pekerjaan");
   if ($proses->num_rows > 0) {
     while($rs = $proses->fetch_object()) {
         $outpArr[] = $rs;
@@ -107,7 +107,7 @@ if($type == 'dataKabupaten')
 
 if($type == 'dataKecamatan')
 {
-  $proses     = $conn->query("SELECT tbl_kec.*, tbl_kab.kabupaten FROM tbl_kec LEFT JOIN tbl_kab ON tbl_kec.id_kab=tbl_kab.id");
+  $proses     = $conn->query("SELECT * FROM tbl_kecamatan");
   if ($proses->num_rows > 0) {
     while($rs = $proses->fetch_object()) {
         $outpArr[] = $rs;
@@ -120,7 +120,7 @@ if($type == 'dataKecamatan')
 
 if($type == 'dataKelurahan')
 {
-  $proses     = $conn->query("SELECT tbl_kel.*, tbl_kec.kecamatan FROM tbl_kel LEFT JOIN tbl_kec ON tbl_kel.id_kec=tbl_kec.id");
+  $proses     = $conn->query("SELECT * FROM     tbl_kelurahan");
   if ($proses->num_rows > 0) {
     while($rs = $proses->fetch_object()) {
         $outpArr[] = $rs;

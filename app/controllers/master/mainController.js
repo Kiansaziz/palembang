@@ -27,19 +27,7 @@
         AuthService.out();
       }
 
-      $scope.getImg = function(p){
-        if (p) {
-          if (p.id == '81') {
-            return "../assets/images/ppatk.png";
-            return false;
-          }
-          if (p.id == '85') {
-            return "../assets/images/ppatk.png";
-            return false;
-          }
-          return "../assets/images/foto.gif";
-        }
-      }
+  
 
 
 

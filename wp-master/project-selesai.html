@@ -1,0 +1,92 @@
+<!-- Main content -->
+<section class="content">
+  <div class="row">
+    <div class="col-md-12">
+        <div class="tab-content">
+
+          <div class="active tab-pane" id="selesai">
+            <span class="box-header with-border">
+              <input type="text" class="form-control" placeholder="Cari Data" ng-model="search_global">
+            </span>
+
+            <div class="table-responsive">
+              <table class="table table-bordered table-hover">
+                <a href="" ng-click="searchToggle()"><i class="fa fa-search-plus"></i> Cari</a>
+                <thead>
+                  <tr>
+                    <th width="3%">No <br><input type="text" class="form-control input-sm" placeholder="..." readOnly ng-show="mySearchFiled"></th>
+                    <th width="10%"><a ng-click="order('kecamatan')">Kecamatan</a><br><input type="text" class="form-control input-sm" placeholder="..." ng-model="search.kecamatan" ng-show="mySearchFiled"></th>
+                    <th width="10%"><a ng-click="order('kelurahan')">Kelurahan</a><br><input type="text" class="form-control input-sm" placeholder="..." ng-model="search.kelurahan" ng-show="mySearchFiled"></th>
+                    <th width="15%"><a ng-click="order('dinas')">Dinas Pemerintah</a><input type="text" class="form-control input-sm" placeholder="..." ng-model="search.dinas" ng-show="mySearchFiled"></th>
+                    <th width="15%"><a ng-click="order('jenis')">Jenis Pekerjaan</a><input type="text" class="form-control input-sm" placeholder="..." ng-model="search.jenis" ng-show="mySearchFiled"></th>
+                    <th width="10%"><a ng-click="order('status')">Mulai</a><input type="text" class="form-control input-sm" placeholder="..." ng-model="search.status" ng-show="mySearchFiled"></th>
+                    <th width="10%"><a ng-click="order('status')">Selesai</a><input type="text" class="form-control input-sm" placeholder="..." ng-model="search.status" ng-show="mySearchFiled"></th>
+                    <th width="7%"><a ng-click="order('persen')">Persentase</a><input type="text" class="form-control input-sm" placeholder="..." ng-model="search.persen" ng-show="mySearchFiled"></th>
+                    <th width="10%"><a ng-click="order('status')">Status</a><input type="text" class="form-control input-sm" placeholder="..." ng-model="search.status" ng-show="mySearchFiled"></th>
+                    <th width="10%"></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr dir-paginate="projectsSelesai in filteredSemua = (projectsSelesais | filter:search | filter:search_global | filter:search_index) | orderBy:'nama' | orderBy:predicate:reverse  | itemsPerPage:itemsize">
+                    <td>{{$index + 1}}</td>
+                    <td>{{projectsSelesai.kecamatan}}</td>
+                    <td>{{projectsSelesai.kelurahan}}</td>
+                    <td>{{projectsSelesai.dinas}}</td>
+                    <td>{{projectsSelesai.jenisPekerjaan}}</td>
+                    <td>{{projectsSelesai.mulai}}</td>
+                    <td>{{projectsSelesai.selesai}}</td>
+                    <td align="right">{{projectsSelesai.persen}}%</td>
+                    <td>{{projectsSelesai.status}}</td>
+                    <td>
+                     <a title="Detail Data" href="#project/{{projectsSelesai.idProject}}"><span class="fa fa-eye"></span></a>
+                      <a ng-if="lihatd.id == user.id" title="Hapus Data" ng-click="deleteDinas(dinas)" class="pull-right danger"><span class="fa fa-trash-o"></span></a>
+                    </td>
+
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="row">
+              <div class="col-sm-2">
+                <small>Total :</small> {{filteredSemua.length}}
+              </div>
+              <div class="form-group" ng-show="filteredSemua.length > 10">
+                <small for="inputName" class="col-sm-2 col-sm-offset-6">Jumlah /Page :</small>
+                <div class="col-sm-2">
+                  <select class="form-control input-sm" name="" ng-model="itemsize" ng-init="itemsize = '10'">
+                    <option value="10">10</option>
+                    <option value="25">25</option>
+                    <option value="50">50</option>
+                    <option value="100">100</option>
+                  </select>
+                </div>
+                <div class="col-sm-12">
+                  <dir-pagination-controls max-size="5" direction-links="true" boundary-links="true" ></dir-pagination-controls>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- /.tab-pane -->
+          <!-- /.tab-pane -->
+
+        </div>
+        <!-- /.tab-content -->
+      </div>
+      <!-- /.nav-tabs-custom -->
+
+
+    </div>
+    <!-- /.col -->
+  </div>
+  <!-- /.row -->
+</section>
+<!-- /.content -->
+
+
+<script type="text/javascript">
+$('.date-picker').datepicker({
+  autoclose: true,
+  todayHighlight: true,
+  format:'yyyy-mm-dd'
+})
+</script>
