@@ -53,7 +53,7 @@
       <div class="small-box bg-green">
         <div class="inner">
           <h3>{{dashboard.kuesioner.jumlah}}</h3>
-          <p>Kuesioner</p>
+          <p>Jumlah Project</p>
         </div>
         <div class="icon">
           <i class="fa fa-files-o"></i>
@@ -68,16 +68,16 @@
         <div class="inner text-center">
           <div class="row" >
             <div class="col-xs-4">
-              <p id="perkecil"><b>{{dashboard.kuesioner.enumerator}}</b></p>
-              <p>Enum</p>
+              <p id="perkecil"><b>{{dashboard.kuesioner.onprogress}}</b></p>
+              <p>Progress</p>
             </div>
             <div class="col-xs-4">
-              <p id="perkecil" ><b>{{dashboard.kuesioner.data_entry}}</b></p>
-              <p>Entry</p>
+              <p id="perkecil" ><b>{{dashboard.kuesioner.finish}}</b></p>
+              <p>Finish</p>
             </div>
             <div class="col-xs-4">
-              <p id="perkecil"><b>{{dashboard.kuesioner.hasil}}</b></p>
-              <p>Selesai</p>
+              <p id="perkecil"><b>{{dashboard.kuesioner.overdu}}</b></p>
+              <p>Overdu</p>
             </div>
           </div>
         </div>
@@ -89,8 +89,8 @@
       <!-- small box -->
       <div class="small-box bg-red">
         <div class="inner">
-          <h3>{{(dashboard.kuesioner.hasil / dashboard.kuesioner.jumlah) * 100 | number}} <sup style="font-size: 20px">%</sup></h3>
-          <p>Capaian</p>
+          <h3>{{(dashboard.kuesioner.finish / dashboard.kuesioner.jumlah) * 100 | number}} <sup style="font-size: 20px">%</sup></h3>
+          <p>Capaian Finish</p>
         </div>
         <div class="icon">
           <i class="fa fa-bar-chart-o"></i>
@@ -108,7 +108,7 @@
 
       <div class="box box-primary">
         <div class="box-header with-border">
-          <h3 class="box-title"><span class="fa fa-bolt"></span> Capaian Jumlah</h3>
+          <h3 class="box-title"><span class="fa fa-bolt"></span> Capaian Hasil Auditor</h3>
           <div class="box-tools pull-right">
             <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
             <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
@@ -122,9 +122,9 @@
             ng-if = "dashboard.capaian != ''"
             bar-chart
             bar-data='dashboard.capaian'
-            bar-x='provinsi'
-            bar-y='["target", "enumerator", "data_entry", "hasil"]'
-            bar-labels='["Target", "Enumerator", "Data Entry", "Hasil"]'>
+            bar-x='kecamatan'
+            bar-y='["target", "onprogress", "finish", "overdu"]'
+            bar-labels='["Jumlah", "onprogress", "finish", "overdu"]'>
           </div>
 
         </div>
@@ -150,9 +150,9 @@
             ng-if = "dashboard.capaian_percent != ''"
             bar-chart
             bar-data='dashboard.capaian_percent'
-            bar-x='provinsi'
-            bar-y='["target", "enumerator", "data_entry", "hasil"]'
-            bar-labels='["Target", "Enumerator", "Data Entry", "Hasil"]'>
+            bar-x='kecamatan'
+            bar-y='["target", "onprogress", "finish", "overdu"]'
+            bar-labels='["Target", "onprogress", "finish", "overdu"]'>
           </div>
 
         </div>
@@ -167,13 +167,13 @@
       <div class="info-box bg-orange">
         <span class="info-box-icon"><i class="fa fa-male"></i></span>
         <div class="info-box-content">
-          <span class="info-box-text">Laki-laki</span>
-          <span class="info-box-number" ng-repeat="x in dashboard.lakilaki">{{x.value}}</span>
+          <span class="info-box-text">ON PROGRESS</span>
+          <span class="info-box-number" ng-repeat="x in dashboard.onprogress">{{x.value}}</span>
           <div class="progress">
-            <div class="progress-bar" style="width: {{jumlahJenisKelamin('Laki-laki') / totalJenisKelamin() * 100}}%"></div>
+            <div class="progress-bar" style="width: {{jumlahJenisKelamin('2') / totalJenisKelamin() * 100}}%"></div>
           </div>
           <span class="progress-description">
-            {{jumlahJenisKelamin('Laki-laki') / totalJenisKelamin() * 100 | number}}% Dari {{totalJenisKelamin()}} Responden
+            {{jumlahJenisKelamin('2') / totalJenisKelamin() * 100 | number}}% Dari {{totalJenisKelamin()}} Project
           </span>
         </div>
       </div>
@@ -181,23 +181,38 @@
       <div class="info-box bg-purple">
         <span class="info-box-icon"><i class="fa fa-female"></i></span>
         <div class="info-box-content">
-          <span class="info-box-text">Perempuan</span>
-          <span class="info-box-number" ng-repeat="x in dashboard.perempuan">{{x.value}}</span>
+          <span class="info-box-text">FINISH</span>
+          <span class="info-box-number" ng-repeat="x in dashboard.finish">{{x.value}}</span>
           <div class="progress">
-            <div class="progress-bar" style="width: {{jumlahJenisKelamin('Perempuan') / totalJenisKelamin() * 100}}%"></div>
+            <div class="progress-bar" style="width: {{jumlahJenisKelamin('1') / totalJenisKelamin() * 100}}%"></div>
           </div>
           <span class="progress-description">
-            {{jumlahJenisKelamin('Perempuan') / totalJenisKelamin() * 100 | number}}% Dari {{totalJenisKelamin()}} Responden
+            {{jumlahJenisKelamin('1') / totalJenisKelamin() * 100 | number}}% Dari {{totalJenisKelamin()}} Project
           </span>
         </div>
       </div>
+
+      <div class="info-box bg-purple">
+        <span class="info-box-icon"><i class="fa fa-female"></i></span>
+        <div class="info-box-content">
+          <span class="info-box-text">OVERDU</span>
+          <span class="info-box-number" ng-repeat="x in dashboard.overdu">{{x.value}}</span>
+          <div class="progress">
+            <div class="progress-bar" style="width: {{jumlahJenisKelamin('3') / totalJenisKelamin() * 100}}%"></div>
+          </div>
+          <span class="progress-description">
+            {{jumlahJenisKelamin('3') / totalJenisKelamin() * 100 | number}}% Dari {{totalJenisKelamin()}} Project
+          </span>
+        </div>
+      </div>
+     
 
     </div>
     <div class="col-md-8">
 
       <div class="box box-primary">
         <div class="box-header with-border">
-          <h3 class="box-title"> <span class="fa fa-cubes"></span> Profesi Responden</h3>
+          <h3 class="box-title"> <span class="fa fa-cubes"></span> Dinas Pemerintahan</h3>
           <div class="box-tools pull-right">
             <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
             <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
@@ -234,54 +249,13 @@
       </div>
 
     </div>
-    <div class="col-md-12">
-
-      <div class="box box-primary">
-        <div class="box-header with-border">
-          <h3 class="box-title"> <span class="fa fa-cubes"></span> Profesi Responden Lainnya</h3>
-          <div class="box-tools pull-right">
-            <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
-            <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
-            <ul class="nav nav-tabs pull-right">
-              <li class="active"><a data-target="#profesi_lain_batang" class="btn btn-box-tool" data-toggle="tab">Batang</a></li>
-              <li><a data-target="#profesi_lain_pie" data-toggle="tab" class="btn btn-box-tool">Pie</a></li>
-            </ul>
-          </div>
-        </div>
-        <div class="box-body tab-content no-padding">
-
-          <div ng-if = "dashboard.profesi_lain == ''" class="alert alert-info text-center">BELUM ADA DATA</div>
-
-          <div class="chart tab-pane active" id="profesi_lain_batang" style="position: relative; height: 300px;"
-            ng-if = "dashboard.profesi_lain != ''"
-            bar-chart
-            bar-data='dashboard.profesi_lain'
-            bar-x='label'
-            bar-y='["value"]'
-            bar-labels='["Jumlah"]'
-            bar-colors='["rgb(207, 48, 48)"]'>
-          </div>
-
-          <div class="chart tab-pane" id="profesi_lain_pie" style="position: relative; height: 300px;"
-            ng-if = "dashboard.profesi_lain != ''"
-            donut-chart
-            donut-data='dashboard.profesi_lain'
-            donut-label-color='"#000000"'
-            donut-background-color='"#ffffff"'
-            donut-formatter='myFormatter'>
-          </div>
-
-        </div>
-      </div>
-
-    </div>
-  </div>
+    
   <div class="row">
     <div class="col-md-6">
 
       <div class="box box-primary">
         <div class="box-header with-border">
-          <h3 class="box-title"><span class="fa fa-adjust"></span> Usia Responden</h3>
+          <h3 class="box-title"><span class="fa fa-adjust"></span> Project</h3>
           <div class="box-tools pull-right">
             <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
             <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
@@ -323,7 +297,7 @@
 
       <div class="box box-primary">
         <div class="box-header with-border">
-          <h3 class="box-title"> <span class="fa fa-cubes"></span> Pendidikan Responden</h3>
+          <h3 class="box-title"> <span class="fa fa-cubes"></span> PROGRESS</h3>
           <div class="box-tools pull-right">
             <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
             <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>

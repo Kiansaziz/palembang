@@ -58,9 +58,9 @@
           } else {
 
             // $scope.dashboard.jenis_kelamin = response.data;
-
-            $scope.dashboard.lakilaki   = filterFilter(response.data, {label: 'Laki-laki'});
-            $scope.dashboard.perempuan  = filterFilter(response.data, {label: 'Perempuan'});
+            $scope.dashboard.finish  = filterFilter(response.data, {label: '1'});
+            $scope.dashboard.onprogress   = filterFilter(response.data, {label: '2'});
+            $scope.dashboard.overdu  = filterFilter(response.data, {label: '3'});
 
             $scope.totalJenisKelamin = function(){
                 if (response.data == '') {
