@@ -1,0 +1,119 @@
+<!-- Content Header -->
+<section class="content-header">
+  <h1>Dinas
+    <small>Data Dinas</small>
+  </h1>
+  <ol class="breadcrumb">
+    <li><a href="#/"><i class="fa fa-dashboard"></i>Dashboard</a></li>
+  </ol>
+
+</section>
+
+
+<!-- Main content -->
+<section class="content">
+  <div class="row">
+    <div class="col-md-12">
+
+
+      <div class="nav-tabs-custom">
+        <ul class="nav nav-tabs">
+          <li class="active"><a data-target="#semua" data-toggle="tab"><span class="fa fa-plus"></span> TAMBAH</a></li>
+          <li><a data-target="#add" data-toggle="tab"> HISTORY PROJECT <span class="badge badge-pill badge-primary">{{historys.length}}</span></a></li>
+        </ul>
+        <div class="tab-content">
+
+          <div class="active tab-pane" id="semua">
+            <div class="box box-primary">
+              <div class="box-body">
+            <div class="col-xs-6">
+              <table class="table table-bordered">
+                <tr>
+                  <td>Desa/Kelurahan</td>
+                  <td>: {{history.kelurahan}}</td>
+                </tr>
+                <tr>
+                  <td>Kecamatan</td>
+                  <td>: {{history.kecamatan}}</td>
+                </tr>
+                <tr>
+                  <td>Kabupaten</td>
+                  <td>: MUARA ENIM</td>
+                </tr>
+                <tr>
+                  <td>Mulai Project</td>
+                  <td>: {{history.status}}</td>
+                </tr>
+                
+              </table>
+            </div>
+
+             <div class="col-xs-6">
+              <table class="table table-bordered">
+                <tr>
+                  <td>Desa/Kelurahan</td>
+                  <td>: {{history.dinas}}</td>
+                </tr>
+                <tr>
+                  <td>Kecamatan</td>
+                  <td>: {{history.jenisPekerjaan}}</td>
+                </tr>
+                <tr>
+                  <td>Kabupaten</td>
+                  <td>: {{history.mulai}}</td>
+                </tr>
+                <tr>
+                  <td>Mulai Project</td>
+                  <td>: {{history.selesai}}</td>
+                </tr>
+              
+              </table>
+            </div>
+            <form name="form" ng-submit="updateProject()" novalidate>
+                <div class="col-md-12" style="margin-bottom: 20px;">
+                  <label>Keterangan Survei</label>
+                  <input type="hidden" name="id" ng-model="history.idProject">
+                  <textarea type="text" name="ketSurvei" ng-model="history.ketSurvei" class="form-control" placeholder="Keterangan Survei......." required=""></textarea>
+                  <span ng-show="form.ketSurvei.$invalid && !form.ketSurvei.$pristine"><i class="text-danger">Harus Di Isi</i></span>
+                </div>
+      
+                 <div class="col-md-2">
+                  <label>Persen</label>
+                  <input type="text" name="persen" ng-model="history.persen" class="form-control" placeholder="persentase" required="">
+                 <span ng-show="form.persen.$invalid && !form.persen.$pristine"><i class="text-danger">Harus Di Isi</i></span>
+                </div>
+                <div class="col-md-12" style="margin-top: 20px;">
+                  <button type="submit" class="btn btn-danger" ng-disabled="form.$invalid">Submit</button>
+              </div>
+          </form>
+          </div>
+        </div>
+          </div>  
+          <!-- /.tab-pane -->
+
+          <div class="tab-pane" id="add">
+            <div ng-include src="'project-history-lihat.html'"></div>
+          </div>
+          <!-- /.tab-pane -->
+
+        </div>
+        <!-- /.tab-content -->
+      </div>
+      <!-- /.nav-tabs-custom -->
+
+
+    </div>
+    <!-- /.col -->
+  </div>
+  <!-- /.row -->
+</section>
+<!-- /.content -->
+
+
+<script type="text/javascript">
+$('.date-picker').datepicker({
+  autoclose: true,
+  todayHighlight: true,
+  format:'yyyy-mm-dd'
+})
+</script>

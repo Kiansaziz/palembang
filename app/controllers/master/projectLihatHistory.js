@@ -1,36 +1,37 @@
 (function(){
 
-    app.controller('dinasDetailController', function($scope, $routeParams, $http, toastr, filterFilter, $location){
+    app.controller('projectLihatHistory', function($scope, $routeParams, $http, toastr, filterFilter, $location){
 
       // pencarian di hidden agar tidak lama load page
       $scope.search = {};
 
 
 
-      var dataDinasDetail = function() {
+      var dataHistory = function() {
         var onSuccess = function(response){
           if (response.data == 'null') {
-            $location.path('/dinas');
+            $location.path('/project-history');
           } else if (response.data == "error") {
             toastr.warning('Terjadi Kesalahan');
           } else {
-            $scope.dinas      = response.data;
+            $scope.historys      = response.data;
           }
         }
         var onError = function(reason){
           toastr.error('Terjadi Kesalahan');
         }
-        $http.post("../api/master/dinas.php?type=dataDinasDetail",{"id":$routeParams.id}).then(onSuccess, onError);
+        $http.post("../api/master/project.php?type=dataProject",{"id":$routeParams.id}).then(onSuccess, onError);
       }
-      dataDinasDetail();
+      dataHistory();
 
-      $scope.updateDinas = function(){
-        $http.post('../api/master/dinas.php?type=update', {
-          'id' : $scope.dinas.id,
-          'dinas' : $scope.kecamatan.kecamatan,
+         $scope.updateProject = function(){
+        $http.post('../api/master/project-history.php?type=update', {
+          'id' : $scope.history.idProject,
+          'ketSurvei' : $scope.history.ketSurvei,
+          'persen' : $scope.history.persen,
         }).success(function(response){
           if (response.status == 'success') {
-            window.location.href = '#/dinas';
+            window.location.href = '#/project';
             toastr.success(response.keterangan);
           } else if (response.status != 'success') {
             toastr.warning(response.keterangan);
@@ -39,6 +40,9 @@
           }
         });
       }
+
+
+
     });
 
 }());

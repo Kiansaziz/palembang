@@ -43,9 +43,9 @@
                     <th width="15%"><a ng-click="order('jenisPekerjaan')">Jenis Pekerjaan</a><input type="text" class="form-control input-sm" placeholder="..." ng-model="search.jenisPekerjaan" ng-show="mySearchFiled"></th>
                     <th width="10%"><a ng-click="order('mulai')">Mulai</a><input type="text" class="form-control input-sm" placeholder="..." ng-model="search.mulai" ng-show="mySearchFiled"></th>
                     <th width="10%"><a ng-click="order('selesai')">Selesai</a><input type="text" class="form-control input-sm" placeholder="..." ng-model="search.selesai" ng-show="mySearchFiled"></th>
-                    <th width="7%"><a ng-click="order('persen')">Persentase</a><input type="text" class="form-control input-sm" placeholder="..." ng-model="search.persen" ng-show="mySearchFiled"></th>
+                    <th width="4%"><a ng-click="order('persen')">%</a><input type="text" class="form-control input-sm" placeholder="..." ng-model="search.persen" ng-show="mySearchFiled"></th>
                     <th width="10%"><a ng-click="order('status')">Status</a><input type="text" class="form-control input-sm" placeholder="..." ng-model="search.status" ng-show="mySearchFiled"></th>
-                    <th width="10%"></th>
+                    <th width="8%"></th>
                   </tr>
                 </thead>
                 <tbody>
@@ -60,8 +60,17 @@
                     <td align="right">{{project.persen}}%</td>
                     <td>{{project.status}}</td>
                     <td>
-                     <a title="Detail Data" href="#project/{{project.idProject}}"><span class="fa fa-eye"></span></a>
-                      <a ng-if="lihatd.id == user.id" title="Hapus Data" ng-click="deleteDinas(dinas)" class="pull-right danger"><span class="fa fa-trash-o"></span></a>
+                      <div class="row">
+                        <div class="col-md-4">
+                          <a title="Detail Data" href="#project/{{project.idProject}}"><span class="fa fa-eye"></span></a>
+                        </div>
+                        <div class="col-md-4">
+                          <a title="Detail Data" href="#project-history/{{project.idProject}}"><span class="fa fa-plus"></span></a>
+                        </div>
+                        <div class="col-md-4">  
+                          <a  title="Hapus Data" ng-click="deleteProject(project)" class="pull-right danger"><span class="fa fa-trash-o"></span></a>
+                        </div>
+                      </div>
                     </td>
 
                   </tr>

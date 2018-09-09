@@ -69,6 +69,7 @@
         var onSuccess = function(response){
           if (response.data == "error") {
             toastr.danger('Terjadi Kesalahan');
+             projectsSelesais();
           } else {
             $scope.projectsSelesais = response.data;
           }
@@ -87,6 +88,7 @@
         var onSuccess = function(response){
           if (response.data == "error") {
             toastr.danger('Terjadi Kesalahan');
+             projectsOnProgresss();
           } else {
             $scope.projectsOnProgresss = response.data;
           }
@@ -103,6 +105,7 @@
         var onSuccess = function(response){
           if (response.data == "error") {
             toastr.danger('Terjadi Kesalahan');
+             projectsOverdus();
           } else {
             $scope.projectsOverdus = response.data;
           }
@@ -164,7 +167,10 @@
         $http.post('../api/master/project.php?type=insert', detail).success(function(response){
           if (response.status == 'success') {
             toastr.success(response.keterangan);
-            khusus();
+            projects();
+            projectsOnProgresss();
+            projectsOverdus();
+            projectsSelesais();
           } else if (response.status != 'success') {
             toastr.warning(response.keterangan);
           } else {
@@ -192,14 +198,14 @@
       users();
 
 
-      $scope.deleteDinas = function(detail){
-        tanya=confirm("Apakah anda yakin akan menghapus "+ detail.dinas +" ? ")
+      $scope.deleteProject = function(detail){
+        tanya=confirm("Apakah anda yakin akan menghapus "+ detail.status +" ? ")
         if (tanya !="0")
         {
-          $http.post('../api/master/dinas.php?type=delete',detail).success(function(data){
+          $http.post('../api/master/project.php?type=delete',detail).success(function(data){
             if (data.status == 'success') {
               toastr.success(data.keterangan);
-              dinass();
+              projects();
             } else if (data.status != 'success') {
               toastr.warning(data.keterangan);
             } else {

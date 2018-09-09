@@ -111,6 +111,8 @@ if($type == 'dataProjectOverdu')
   echo json_encode($outpArr);
 }
 
+
+
 if ($type == 'dataProjectAdd') 
 {
   $proses = $conn->query("SELECT * FROM tbl_project a 
@@ -234,6 +236,45 @@ if($type == 'insert')
   echo $outp;
 }
 
+if($type == 'update')
+{
+  $post   = json_decode(file_get_contents("php://input"));
+  $jwt    = $conn->real_escape_string($post->token);
+  $idKec = $conn->real_escape_string(isset($post->idKec) ? $post->idKec : '');
+  $idProject = $conn->real_escape_string(isset($post->idProject) ? $post->idProject : '');
+  $idKel    = $conn->real_escape_string(isset($post->idKel) ? $post->idKel : '');
+  $idDinas    = $conn->real_escape_string(isset($post->idDinas) ? $post->idDinas : '');
+  $idJenisPekerjaan    = $conn->real_escape_string(isset($post->idJenisPekerjaan) ? $post->idJenisPekerjaan : '');
+  $ketSurvei    = $conn->real_escape_string(isset($post->ketSurvei) ? $post->ketSurvei : '');
+  $mulai    = $conn->real_escape_string(isset($post->mulai) ? $post->mulai : '');
+  $selesai    = $conn->real_escape_string(isset($post->selesai) ? $post->selesai : '');
+  $persen    = $conn->real_escape_string(isset($post->persen) ? $post->persen : '');
+  date_default_timezone_set('Asia/Jakarta');
+  $date = date("Y-m-d H:i:s");
+  try {
+     $DecodedDataArray = JWT::decode(
+       $jwt,
+       $secretKey,
+       array(ALGORITHM)
+     );
+     $dari     = $DecodedDataArray->data->id;
+     $query    = "INSERT INTO tbl_project_history (idProjectHistory,idKec,idProject) VALUES ('','$idKec','$idProject')";
+     $runQuery = $conn->query($query);
+
+     if ($runQuery) {
+       $outp .= '{"status":"success",';
+       $outp .= '"keterangan":"Berhasil Memasukan Data"}';
+     } else {
+       $outp .= '{"status":"error",';
+       $outp .= '"keterangan":"Gagal Memasukan Data"}';
+     }
+
+  } catch (Exception $e) {
+    $outp .= '{"status":"error",';
+    $outp .= '"keterangan":"Gagal Memproses Data"}';
+  }
+  echo $outp;
+}
 
 
 
@@ -256,31 +297,56 @@ if($type == 'dataProjectDetail')
   echo json_encode($outp);
 }
 
-
-
-if ($type == 'update') {
-  $post     = json_decode(file_get_contents("php://input"));
-  $id       = $conn->real_escape_string(isset($post->id) ? $post->id : '');
-  $dinas     = $conn->real_escape_string(isset($post->dinas) ? $post->dinas : '');
-  $query = "UPDATE tbl_dinas SET dinas = '$dinas' WHERE id = '$id'";
-  $runQuery = $conn->query($query);
-  if ($runQuery) {
-    $outp .= '{"status":"success",';
-    $outp .= '"keterangan":"Berhasil Mengubah Data"}';
+if($type == 'dataProjectHistory')
+{
+  $post   = json_decode(file_get_contents("php://input"));
+  $id     = $conn->real_escape_string($post->id);
+  $proses = $conn->query("SELECT * FROM tbl_project a 
+                          INNER JOIN tbl_user b ON a.idUser=b.id
+                          INNER JOIN tbl_kecamatan c ON a.idKec=c.idKec
+                          INNER JOIN tbl_kelurahan d ON a.idKel=d.idKel
+                          INNER JOIN tbl_dinas e ON a.idDinas=e.id
+                          INNER JOIN tbl_jenis_pekerjaan f ON a.idJenisPekerjaan=f.id
+                          INNER JOIN tbl_status g ON a.status=g.id WHERE a.idProject='$id'
+                          "
+                        );
+  if ($proses->num_rows > 0) {
+    while($rs = $proses->fetch_object()) {
+        $outpArr[] = $rs;
+    }
   } else {
-    $outp .= '{"status":"error",';
-    $outp .= '"keterangan":"Gagal Mengubah Data"}';
+    $outpArr[]=null;
   }
-  echo $outp;
+  echo json_encode($outpArr);
 }
+
+
+
+
+
+// if ($type == 'update') {
+//   $post     = json_decode(file_get_contents("php://input"));
+//   $id       = $conn->real_escape_string(isset($post->id) ? $post->id : '');
+//   $dinas     = $conn->real_escape_string(isset($post->dinas) ? $post->dinas : '');
+//   $query = "UPDATE tbl_dinas SET dinas = '$dinas' WHERE id = '$id'";
+//   $runQuery = $conn->query($query);
+//   if ($runQuery) {
+//     $outp .= '{"status":"success",';
+//     $outp .= '"keterangan":"Berhasil Mengubah Data"}';
+//   } else {
+//     $outp .= '{"status":"error",';
+//     $outp .= '"keterangan":"Gagal Mengubah Data"}';
+//   }
+//   echo $outp;
+// }
 
 
 
 
 if ($type == 'delete') {
   $post        = json_decode(file_get_contents("php://input"));
-  $id          = $conn->real_escape_string(isset($post->id) ? $post->id : '');
-  $query      = "DELETE FROM tbl_dinas WHERE id = '$id'";
+  $idProject          = $conn->real_escape_string(isset($post->idProject) ? $post->idProject : '');
+  $query      = "DELETE FROM tbl_project WHERE idProject = '$idProject'";
   if ($conn->query($query)) {
     $outp .= '{"status":"success",';
     $outp .= '"keterangan":"Berhasil Menghapus Data"}';
