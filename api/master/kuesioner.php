@@ -9,16 +9,10 @@ $type      = $conn->real_escape_string(htmlentities($_GET['type']));
 
 if($type == 'dataKuesioner')
 {
-  $proses = $conn->query("SELECT tbl_kuesioner.nomor_kuesioner, tbl_kuesioner.valid_enumerator, tbl_kuesioner.valid_data_entry, tbl_kuesioner.valid_gabungan, tbl_kuesioner.id_prov, tbl_kuesioner.id_kab, tbl_kuesioner.id_kec, tbl_kuesioner.id_kel,
-                                  tbl_prov.provinsi,
-                                  tbl_kab.kabupaten,
-                                  tbl_kec.kecamatan,
-                                  tbl_kel.kelurahan
-                                  FROM tbl_kuesioner
-                                  LEFT JOIN tbl_prov ON tbl_kuesioner.id_prov =  tbl_prov.id
-                                  LEFT JOIN tbl_kab ON tbl_kuesioner.id_kab = tbl_kab.id
-                                  LEFT JOIN tbl_kec ON tbl_kuesioner.id_kec = tbl_kec.id
-                                  LEFT JOIN tbl_kel ON tbl_kuesioner.id_kel = tbl_kel.id");
+  $proses = $conn->query("SELECT * FROM tbl_project a 
+                          INNER JOIN tbl_kecamatan c ON a.idKec=c.idKec
+                          INNER JOIN tbl_kelurahan d ON a.idKel=d.idKel
+                              ");
   if ($proses->num_rows > 0) {
     while($rs = $proses->fetch_object()) {
         $outpArr[] = $rs;

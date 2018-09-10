@@ -71,11 +71,15 @@
                 </tr>
                 <tr>
                   <td>Mulai Project</td>
-                  <td>: {{project.mulai}}</td>
+                  <td>: <b>{{project.mulai | date:'d MMMM y'}}</b></td>
                 </tr>
                 <tr>
                   <td>Batas Selesai Project</td>
-                  <td>: {{project.selesai}}</td>
+                  <td>: <b>{{project.selesai | date:'d MMMM y'}}</b></td>
+                </tr>
+                <tr>
+                  <td>Terakhir Update</td>
+                  <td>: {{project.dateEntry | date:'d MMMM y'}}</td>
                 </tr>
               </table>
             </div>

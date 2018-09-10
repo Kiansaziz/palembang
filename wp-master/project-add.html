@@ -85,12 +85,12 @@
            </div> -->
             <div class="col-md-4">
               <label>Mulai</label>
-              <input type="date" name="mulai" ng-model="dataProject.mulai" class="form-control" placeholder="persentase" required="">
+              <input type="text" name="mulai" ng-model="dataProject.mulai" class="form-control date-picker" placeholder="Mulai" required="">
               <span ng-show="form.mulai.$invalid && !form.mulai.$pristine"><i class="text-danger">Harus Di Isi</i></span>
             </div>
              <div class="col-md-4">
               <label>Selesai</label>
-              <input type="date" name="selesai" ng-model="dataProject.selesai" class="form-control" placeholder="persentase" required="">
+              <input type="text" name="selesai" ng-model="dataProject.selesai" class="form-control date-picker" placeholder="Selesai" required="">
              <span ng-show="form.selesai.$invalid && !form.selesai.$pristine"><i class="text-danger">Harus Di Isi</i></span>
             </div>
              <div class="col-md-2">
@@ -208,4 +208,13 @@
                 }    
             }
         </script>
+
+<script type="text/javascript">
+$('.date-picker').datepicker({
+  autoclose: true,
+  todayHighlight: true,
+  format:'yyyy-mm-dd'
+})
+</script>
+
 

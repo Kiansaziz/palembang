@@ -140,6 +140,12 @@
             <i ng-class="{'pull-right fa fa-arrow-circle-right': $route.current.activetab == ''}"></i>
           </a>
         </li>
+         <li ng-class="{'active': $route.current.activetab == 'info'}">
+          <a href="#info">
+            <i class="fa fa-bullhorn"></i> <span>Informasi Umum</span>
+            <i ng-class="{'pull-right fa fa-arrow-circle-right': $route.current.activetab == 'info'}"></i>
+          </a>
+        </li>
         <li ng-class="{'active': $route.current.activetab == 'user'}">
           <a href="#user">
             <i class="fa fa-users"></i> <span>Users</span>
@@ -160,14 +166,14 @@
         </li>
         <li ng-class="{'active' : $route.curren.activetab == 'jenis'">
           <a href="#jenis">
-            <i class="fa fa-list-alt"></i><span>Jenis Pekerjaan</span>
+            <i class="fa fa-bookmark"></i><span>Jenis Pekerjaan</span>
             <i ng-class="{'pull-right fa fa-arraw-circle-right' : $route.curren.activetab == 'jenis'}"></i>
           </a>
           
         </li>
         <li ng-class="{'active' : $route.curren.activetab == 'project'">
           <a href="#project">
-            <i class="fa fa-list-alt"></i><span>Project</span>
+            <i class="fa fa-book"></i><span>Project</span>
             <i ng-class="{'pull-right fa fa-arraw-circle-right' : $route.curren.activetab == 'project'}"></i>
           </a>
         </li> 

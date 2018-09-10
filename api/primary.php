@@ -120,7 +120,8 @@ if($type == 'dataKecamatan')
 
 if($type == 'dataKelurahan')
 {
-  $proses     = $conn->query("SELECT * FROM     tbl_kelurahan");
+  $proses     = $conn->query("SELECT * FROM tbl_kelurahan a 
+                              INNER JOIN tbl_kecamatan b ON a.idKec=b.idKec");
   if ($proses->num_rows > 0) {
     while($rs = $proses->fetch_object()) {
         $outpArr[] = $rs;

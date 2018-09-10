@@ -24,6 +24,11 @@ if($type == 'dataProject')
                         );
   if ($proses->num_rows > 0) {
     while($rs = $proses->fetch_object()) {
+            if ($rs) {
+               $status = '3';
+               $query = "UPDATE tbl_project SET status = '$status' WHERE selesai <= NOW() AND persen <100 ";
+               $runQuery= $conn->query($query);
+             }
         $outpArr[] = $rs;
     }
   } else {

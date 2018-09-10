@@ -41,7 +41,7 @@
                   <td>: MUARA ENIM</td>
                 </tr>
                 <tr>
-                  <td>Mulai Project</td>
+                  <td>Status</td>
                   <td>: {{history.status}}</td>
                 </tr>
                 
@@ -60,13 +60,12 @@
                 </tr>
                 <tr>
                   <td>Kabupaten</td>
-                  <td>: {{history.mulai}}</td>
+                  <td>: <b>{{history.mulai | date:'d MMMM y'}}<b></td>
                 </tr>
                 <tr>
                   <td>Mulai Project</td>
-                  <td>: {{history.selesai}}</td>
+                  <td>: <b>{{history.selesai | date:'d MMMM y'}}</b></td>
                 </tr>
-              
               </table>
             </div>
             <form name="form" ng-submit="updateProject()" novalidate>

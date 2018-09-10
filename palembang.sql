@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 08, 2018 at 02:27 PM
+-- Generation Time: Sep 09, 2018 at 10:57 PM
 -- Server version: 10.1.31-MariaDB
 -- PHP Version: 7.1.15
 
@@ -39,27 +39,10 @@ CREATE TABLE `tbl_dinas` (
 
 INSERT INTO `tbl_dinas` (`id`, `dinas`) VALUES
 (1, 'Dinas Pendidikan'),
-(2, 'Dinas Perikanan'),
-(3, 'Dinas Kehutanan'),
-(4, 'sayaaang'),
-(5, 'sayaaang'),
-(6, 'sayaaang'),
-(7, 'sayaaang'),
-(8, 'sayaaang'),
-(9, 'sayaaang'),
-(10, 'sayaaang'),
-(11, 'sayaaang'),
-(12, 'sayaaang'),
-(13, 'sayaaang'),
-(14, 'sayaaang'),
-(15, 'sayaaang'),
-(16, 'sayaaang'),
-(17, 'sayaaang'),
-(18, 'sayaaang'),
-(19, 'sayaaang'),
-(20, 'sayaaang'),
-(21, 'aaa'),
-(22, 'aaa');
+(2, 'Dinas Pembangunan'),
+(3, 'Dinas Parawisata'),
+(4, 'Dinas Kelautan'),
+(5, 'Dinas Kesehatan');
 
 -- --------------------------------------------------------
 
@@ -77,33 +60,11 @@ CREATE TABLE `tbl_jenis_pekerjaan` (
 --
 
 INSERT INTO `tbl_jenis_pekerjaan` (`id`, `jenisPekerjaan`) VALUES
-(1, 'Project jalanan'),
-(2, 'Project Pembangunan'),
-(3, 'Project Kereta'),
-(4, 'asdfasdf'),
-(5, 'asdfasdf'),
-(6, 'asdfasdf'),
-(7, 'asdfasdf'),
-(8, 'asdfasdf'),
-(9, 'asdfasdf'),
-(10, 'asdfasdf'),
-(11, 'asdfasdf'),
-(12, 'asdfasdf'),
-(13, 'asdfasdf'),
-(14, 'asdfasdf'),
-(15, 'asdfasdf'),
-(16, 'asdfasdf'),
-(17, 'asdfasdf'),
-(18, 'asdfasdf'),
-(19, 'asdfasdf'),
-(20, 'asdfasdf'),
-(21, 'asdfasdf'),
-(22, 'asdfasdf'),
-(23, 'asdfasdf'),
-(24, 'asdfasdf'),
-(25, 'asdfasdf'),
-(26, 'asdfasdf'),
-(27, 'asdfasdf');
+(1, 'Proyek Pembangunan'),
+(2, 'Proyek Perdagangan Online'),
+(3, 'Proyek Pendidikan Beasiswa'),
+(4, 'Proyek Pembangunan Sekolah'),
+(5, 'Proyek Alat Alat Kesehatan');
 
 -- --------------------------------------------------------
 
@@ -193,6 +154,27 @@ INSERT INTO `tbl_level` (`id`, `nama_level`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `tbl_login_failed`
+--
+
+CREATE TABLE `tbl_login_failed` (
+  `id` int(11) NOT NULL,
+  `ip` varchar(30) NOT NULL,
+  `try_username` varchar(30) NOT NULL,
+  `try_password` varchar(30) NOT NULL,
+  `tanggal` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tbl_login_failed`
+--
+
+INSERT INTO `tbl_login_failed` (`id`, `ip`, `try_username`, `try_password`, `tanggal`) VALUES
+(1, '::1', 'master', 'a', '2018-09-10 02:08:50');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `tbl_pesan_broadcast`
 --
 
@@ -213,7 +195,7 @@ CREATE TABLE `tbl_pesan_broadcast` (
 --
 
 INSERT INTO `tbl_pesan_broadcast` (`id`, `dari`, `kepada`, `enumerator`, `data_entry`, `isi`, `mulai`, `selesai`, `date_entry`) VALUES
-(3, 1, '1,2,3', 0, 0, 'asdfasdf', '2018-09-04', '2018-09-24', '2018-09-04 12:36:14');
+(5, 1, '1,2', 0, 0, 'Silahkan di QA', '2018-09-03', '2018-09-25', '2018-09-10 02:48:22');
 
 -- --------------------------------------------------------
 
@@ -235,30 +217,8 @@ CREATE TABLE `tbl_pesan_khusus` (
 --
 
 INSERT INTO `tbl_pesan_khusus` (`id`, `dari`, `kepada`, `isi`, `response`, `date_entry`) VALUES
-(2, 1, 5, 'hayy', 0, '2018-09-04 14:01:13'),
-(3, 1, 3, 'aaa', 0, '2018-09-04 14:02:39'),
-(4, 1, 3, 'aaa', 0, '2018-09-04 14:03:45'),
-(5, 1, 3, 'asdfasd', 0, '2018-09-04 14:05:26'),
-(6, 1, 5, 'asdfasdf', 0, '2018-09-04 14:07:26'),
-(7, 1, 3, 'aaaa', 0, '2018-09-04 14:11:25'),
-(9, 1, 3, 'sdafsadf', 0, '2018-09-07 00:41:07'),
-(10, 6, 1, 'asdfasdf', 0, '2018-09-07 00:43:09'),
-(11, 6, 1, 'asdfasdf', 0, '2018-09-07 00:43:25'),
-(12, 1, 3, 'asdf', 0, '2018-09-08 16:27:31'),
-(13, 1, 3, 'asdf', 0, '2018-09-08 16:27:32'),
-(14, 1, 3, 'asdf', 0, '2018-09-08 16:27:32'),
-(15, 1, 3, 'asdf', 0, '2018-09-08 16:27:32'),
-(16, 1, 3, 'asdf', 0, '2018-09-08 16:27:32'),
-(17, 1, 3, 'asdf', 0, '2018-09-08 16:27:33'),
-(18, 1, 3, 'asdf', 0, '2018-09-08 16:27:33'),
-(19, 1, 3, 'asdf', 0, '2018-09-08 16:27:33'),
-(20, 1, 3, 'asdf', 0, '2018-09-08 16:27:33'),
-(21, 1, 3, 'asdf', 0, '2018-09-08 16:27:33'),
-(22, 1, 3, 'asdf', 0, '2018-09-08 16:27:37'),
-(23, 1, 3, 'asdf', 0, '2018-09-08 16:27:37'),
-(24, 1, 3, 'asdf', 0, '2018-09-08 16:27:37'),
-(25, 1, 3, 'asdf', 0, '2018-09-08 16:27:37'),
-(26, 1, 3, 'asdf', 0, '2018-09-08 16:27:37');
+(2, 1, 3, 'hay', 0, '2018-09-10 02:47:11'),
+(3, 1, 6, 'hello', 0, '2018-09-10 03:46:18');
 
 -- --------------------------------------------------------
 
@@ -290,45 +250,26 @@ CREATE TABLE `tbl_project` (
 --
 
 INSERT INTO `tbl_project` (`idProject`, `idKec`, `idKel`, `idDinas`, `idJenisPekerjaan`, `idUser`, `ketSurvei`, `gambar1`, `gambar2`, `gambar3`, `persen`, `status`, `mulai`, `selesai`, `dateEntry`, `time`) VALUES
-(1, 1, 1, 1, 1, 6, 'bla bla bla', 'survei1.jpg', 'survei2.jpg', 'survei3.jpg', 70, 2, '2018-09-07', '2018-09-15', '2018-09-07', '2018-09-07 00:00:00'),
-(2, 1, 1, 1, 1, 6, 'bla bla bla', 'survei1.jpg', 'survei2.jpg', 'survei3.jpg', 70, 2, '2018-09-07', '2018-09-15', '2018-09-07', '2018-09-07 00:00:00'),
-(3, 1, 1, 1, 1, 6, 'bla bla bla', 'survei1.jpg', 'survei2.jpg', 'survei3.jpg', 70, 2, '2018-09-07', '2018-09-15', '2018-09-07', '2018-09-07 00:00:00'),
-(4, 1, 1, 1, 1, 6, 'bla bla bla', 'survei1.jpg', 'survei2.jpg', 'survei3.jpg', 70, 2, '2018-09-07', '2018-09-15', '2018-09-07', '2018-09-07 00:00:00'),
-(5, 1, 1, 1, 1, 6, 'bla bla bla', 'survei1.jpg', 'survei2.jpg', 'survei3.jpg', 70, 2, '2018-09-07', '2018-09-15', '2018-09-07', '2018-09-07 00:00:00'),
-(6, 1, 1, 1, 1, 6, 'bla bla bla', 'survei1.jpg', 'survei2.jpg', 'survei3.jpg', 70, 2, '2018-09-07', '2018-09-15', '2018-09-07', '2018-09-07 00:00:00'),
-(7, 1, 1, 1, 1, 6, 'bla bla bla', 'survei1.jpg', 'survei2.jpg', 'survei3.jpg', 70, 1, '2018-09-07', '2018-09-15', '2018-09-07', '2018-09-07 00:00:00'),
-(8, 1, 1, 1, 1, 6, 'bla bla bla', 'survei1.jpg', 'survei2.jpg', 'survei3.jpg', 70, 1, '2018-09-07', '2018-09-15', '2018-09-07', '2018-09-07 00:00:00'),
-(9, 1, 1, 1, 1, 6, 'bla bla bla', 'survei1.jpg', 'survei2.jpg', 'survei3.jpg', 70, 1, '2018-09-07', '2018-09-15', '2018-09-07', '2018-09-07 00:00:00'),
-(10, 1, 1, 1, 1, 6, 'bla bla bla', 'survei1.jpg', 'survei2.jpg', 'survei3.jpg', 70, 1, '2018-09-07', '2018-09-15', '2018-09-07', '2018-09-07 00:00:00'),
-(11, 1, 1, 1, 1, 6, 'bla bla bla', 'survei1.jpg', 'survei2.jpg', 'survei3.jpg', 70, 1, '2018-09-07', '2018-09-15', '2018-09-07', '2018-09-07 00:00:00'),
-(12, 1, 1, 1, 1, 6, 'bla bla bla', 'survei1.jpg', 'survei2.jpg', 'survei3.jpg', 70, 1, '2018-09-07', '2018-09-15', '2018-09-07', '2018-09-07 00:00:00'),
-(13, 1, 1, 1, 1, 6, 'bla bla bla', 'survei1.jpg', 'survei2.jpg', 'survei3.jpg', 70, 1, '2018-09-07', '2018-09-15', '2018-09-07', '2018-09-07 00:00:00'),
-(14, 1, 1, 1, 1, 6, 'bla bla bla', 'survei1.jpg', 'survei2.jpg', 'survei3.jpg', 70, 1, '2018-09-07', '2018-09-15', '2018-09-07', '2018-09-07 00:00:00'),
-(15, 1, 1, 1, 1, 6, 'bla bla bla', 'survei1.jpg', 'survei2.jpg', 'survei3.jpg', 70, 1, '2018-09-07', '2018-09-15', '2018-09-07', '2018-09-07 00:00:00'),
-(16, 1, 1, 1, 1, 6, 'bla bla bla', 'survei1.jpg', 'survei2.jpg', 'survei3.jpg', 70, 1, '2018-09-07', '2018-09-15', '2018-09-07', '2018-09-07 00:00:00'),
-(17, 1, 1, 1, 1, 6, 'bla bla bla', 'survei1.jpg', 'survei2.jpg', 'survei3.jpg', 70, 1, '2018-09-07', '2018-09-15', '2018-09-07', '2018-09-07 00:00:00'),
-(18, 1, 1, 1, 1, 6, 'bla bla bla', 'survei1.jpg', 'survei2.jpg', 'survei3.jpg', 70, 1, '2018-09-07', '2018-09-15', '2018-09-07', '2018-09-07 00:00:00'),
-(19, 1, 1, 1, 1, 6, 'bla bla bla', 'survei1.jpg', 'survei2.jpg', 'survei3.jpg', 70, 1, '2018-09-07', '2018-09-15', '2018-09-07', '2018-09-07 00:00:00'),
-(20, 1, 1, 1, 1, 6, 'bla bla bla', 'survei1.jpg', 'survei2.jpg', 'survei3.jpg', 70, 1, '2018-09-07', '2018-09-15', '2018-09-07', '2018-09-07 00:00:00'),
-(21, 1, 1, 1, 1, 6, 'bla bla bla', 'survei1.jpg', 'survei2.jpg', 'survei3.jpg', 70, 1, '2018-09-07', '2018-09-15', '2018-09-07', '2018-09-07 00:00:00'),
-(22, 1, 1, 1, 1, 6, 'bla bla bla', 'survei1.jpg', 'survei2.jpg', 'survei3.jpg', 70, 3, '2018-09-07', '2018-09-15', '2018-09-07', '2018-09-07 00:00:00'),
-(23, 1, 1, 1, 1, 6, 'bla bla bla', 'survei1.jpg', 'survei2.jpg', 'survei3.jpg', 70, 3, '2018-09-07', '2018-09-15', '2018-09-07', '2018-09-07 00:00:00'),
-(24, 1, 1, 1, 1, 6, 'bla bla bla', 'survei1.jpg', 'survei2.jpg', 'survei3.jpg', 70, 3, '2018-09-07', '2018-09-15', '2018-09-07', '2018-09-07 00:00:00'),
-(25, 1, 1, 1, 1, 6, 'bla bla bla', 'survei1.jpg', 'survei2.jpg', 'survei3.jpg', 70, 3, '2018-09-07', '2018-09-15', '2018-09-07', '2018-09-07 00:00:00'),
-(26, 1, 1, 1, 1, 6, 'bla bla bla', 'survei1.jpg', 'survei2.jpg', 'survei3.jpg', 70, 3, '2018-09-07', '2018-09-15', '2018-09-07', '2018-09-07 00:00:00'),
-(27, 1, 1, 1, 1, 6, 'bla bla bla', 'survei1.jpg', 'survei2.jpg', 'survei3.jpg', 70, 3, '2018-09-07', '2018-09-15', '2018-09-07', '2018-09-07 00:00:00'),
-(28, 1, 1, 1, 1, 6, 'bla bla bla', 'survei1.jpg', 'survei2.jpg', 'survei3.jpg', 70, 3, '2018-09-07', '2018-09-15', '2018-09-07', '2018-09-07 00:00:00'),
-(29, 1, 1, 1, 1, 6, 'bla bla bla', 'survei1.jpg', 'survei2.jpg', 'survei3.jpg', 70, 3, '2018-09-07', '2018-09-15', '2018-09-07', '2018-09-07 00:00:00'),
-(30, 1, 1, 1, 1, 6, 'bla bla bla', 'survei1.jpg', 'survei2.jpg', 'survei3.jpg', 70, 3, '2018-09-07', '2018-09-15', '2018-09-07', '2018-09-07 00:00:00'),
-(31, 1, 1, 1, 1, 6, 'bla bla bla', 'survei1.jpg', 'survei2.jpg', 'survei3.jpg', 70, 3, '2018-09-07', '2018-09-15', '2018-09-07', '2018-09-07 00:00:00'),
-(32, 1, 1, 1, 1, 6, 'bla bla bla', 'survei1.jpg', 'survei2.jpg', 'survei3.jpg', 70, 3, '2018-09-07', '2018-09-15', '2018-09-07', '2018-09-07 00:00:00'),
-(33, 1, 1, 1, 1, 6, 'bla bla bla', 'survei1.jpg', 'survei2.jpg', 'survei3.jpg', 70, 3, '2018-09-07', '2018-09-15', '2018-09-07', '2018-09-07 00:00:00'),
-(34, 1, 1, 1, 1, 6, 'bla bla bla', 'survei1.jpg', 'survei2.jpg', 'survei3.jpg', 70, 3, '2018-09-07', '2018-09-15', '2018-09-07', '2018-09-07 00:00:00'),
-(35, 1, 1, 1, 1, 6, 'bla bla bla', 'survei1.jpg', 'survei2.jpg', 'survei3.jpg', 70, 3, '2018-09-07', '2018-09-15', '2018-09-07', '2018-09-07 00:00:00'),
-(36, 1, 1, 1, 1, 6, 'bla bla bla', 'survei1.jpg', 'survei2.jpg', 'survei3.jpg', 70, 3, '2018-09-07', '2018-09-15', '2018-09-07', '2018-09-07 00:00:00'),
-(37, 1, 1, 1, 1, 6, 'bla bla bla', 'survei1.jpg', 'survei2.jpg', 'survei3.jpg', 70, 3, '2018-09-07', '2018-09-15', '2018-09-07', '2018-09-07 00:00:00'),
-(38, 1, 1, 1, 1, 6, 'bla bla bla', 'survei1.jpg', 'survei2.jpg', 'survei3.jpg', 70, 3, '2018-09-07', '2018-09-15', '2018-09-07', '2018-09-07 00:00:00'),
-(39, 1, 1, 1, 1, 6, 'bla bla bla', 'survei1.jpg', 'survei2.jpg', 'survei3.jpg', 70, 3, '2018-09-07', '2018-09-15', '2018-09-07', '2018-09-07 00:00:00');
+(3, 4, 16, 1, 1, 1, 'Pembangunan sekolah di daerah Kecamatan Abad Kelurahan Betung', '', '', '', 40, 2, '2018-08-31', '2018-09-10', '2018-09-10', '2018-09-10 02:15:09'),
+(4, 4, 16, 1, 1, 1, 'Pembangunan sekolah di daerah Kecamatan Abad Kelurahan Betung', '', '', '', 40, 2, '2018-08-31', '2018-09-10', '2018-09-10', '2018-09-10 02:15:13'),
+(5, 4, 16, 1, 1, 1, 'Pembangunan sekolah di daerah Kecamatan Abad Kelurahan Betung', '', '', '', 40, 2, '2018-08-31', '2018-09-10', '2018-09-10', '2018-09-10 02:15:13'),
+(6, 6, 23, 2, 1, 1, 'Pembangunan Jembatan TImbang', '', '', '', 40, 2, '2018-08-31', '2018-09-10', '2018-09-10', '2018-09-10 02:15:39'),
+(7, 6, 22, 2, 1, 1, 'Pembangunan Jembatan TImbang', '', '', '', 40, 2, '2018-08-31', '2018-09-10', '2018-09-10', '2018-09-10 02:15:41'),
+(8, 6, 24, 2, 1, 1, 'Pembangunan Jembatan TImbang', '', '', '', 40, 2, '2018-08-31', '2018-09-10', '2018-09-10', '2018-09-10 02:15:44'),
+(9, 5, 24, 2, 1, 1, 'Pembangunan Jembatan TImbang', '', '', '', 40, 2, '2018-08-31', '2018-09-10', '2018-09-10', '2018-09-10 02:15:46'),
+(10, 5, 19, 2, 1, 1, 'Pembangunan Jembatan TImbang', '', '', '', 40, 2, '2018-08-31', '2018-09-10', '2018-09-10', '2018-09-10 02:15:48'),
+(11, 5, 21, 2, 1, 1, 'Pembangunan Jembatan TImbang', '', '', '', 40, 2, '2018-08-31', '2018-09-10', '2018-09-10', '2018-09-10 02:15:51'),
+(12, 3, 14, 3, 1, 1, 'Pembangunan wisata daerah gaung telang', '', '', '', 70, 2, '2018-09-18', '2018-09-27', '2018-09-10', '2018-09-10 02:17:56'),
+(13, 3, 14, 3, 1, 1, 'Pembangunan wisata daerah gaung telang', '', '', '', 70, 2, '2018-09-18', '2018-09-27', '2018-09-10', '2018-09-10 02:17:56'),
+(14, 3, 14, 3, 1, 1, 'Pembangunan wisata daerah gaung telang', '', '', '', 70, 2, '2018-09-18', '2018-09-27', '2018-09-10', '2018-09-10 02:17:57'),
+(15, 3, 14, 3, 1, 1, 'Pembangunan wisata daerah gaung telang', '', '', '', 70, 2, '2018-09-18', '2018-09-27', '2018-09-10', '2018-09-10 02:17:58'),
+(16, 3, 14, 3, 1, 1, 'Pembangunan wisata daerah gaung telang', '', '', '', 70, 2, '2018-09-18', '2018-09-27', '2018-09-10', '2018-09-10 02:17:59'),
+(19, 2, 7, 2, 2, 1, 'Pembangunan wisata daerah gaung telang', '', '', '', 80, 2, '2018-09-18', '2018-09-27', '2018-09-10', '2018-09-10 03:48:46'),
+(21, 1, 1, 4, 1, 1, 'Pembangungan proyek minyak dan gas di daerah lautan', '', '', '', 90, 2, '2018-09-09', '2019-01-03', '2018-09-10', '2018-09-10 03:44:37'),
+(23, 3, 13, 5, 5, 1, 'Proyek pembeli alat kesehatan untuk rumah sakit negeri', '', '', '', 30, 2, '2018-09-09', '2018-09-19', '2018-09-10', '2018-09-10 03:47:39'),
+(24, 4, 13, 5, 5, 1, 'Proyek pembeli alat kesehatan untuk rumah sakit negeri', '', '', '', 30, 2, '2018-09-09', '2018-09-19', '2018-09-10', '2018-09-10 03:47:45'),
+(25, 4, 17, 5, 5, 1, 'Proyek pembeli alat kesehatan untuk rumah sakit negeri', '', '', '', 30, 2, '2018-09-09', '2018-09-19', '2018-09-10', '2018-09-10 03:47:47'),
+(26, 2, 12, 5, 5, 1, 'Proyek pembeli alat kesehatan untuk rumah sakit negeri', '', '', '', 50, 2, '2018-09-09', '2018-09-19', '2018-09-10', '2018-09-10 03:48:21');
 
 -- --------------------------------------------------------
 
@@ -339,19 +280,26 @@ INSERT INTO `tbl_project` (`idProject`, `idKec`, `idKel`, `idDinas`, `idJenisPek
 CREATE TABLE `tbl_project_history` (
   `idProjectHistory` int(5) NOT NULL,
   `idProject` int(5) NOT NULL,
-  `idKec` int(5) NOT NULL,
-  `idKel` int(5) NOT NULL,
-  `idDinas` int(5) NOT NULL,
-  `idJenisPekerjaan` int(5) NOT NULL,
-  `idUser` int(5) NOT NULL,
   `ketSurvei` text NOT NULL,
   `gambar1` text NOT NULL,
   `gambar2` text NOT NULL,
   `gambar3` text NOT NULL,
-  `persen` int(5) NOT NULL,
+  `persentase` int(5) NOT NULL,
   `dateEntry` date NOT NULL,
   `time` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tbl_project_history`
+--
+
+INSERT INTO `tbl_project_history` (`idProjectHistory`, `idProject`, `ketSurvei`, `gambar1`, `gambar2`, `gambar3`, `persentase`, `dateEntry`, `time`) VALUES
+(24, 21, 'Pembangungan proyek minyak dan gas di daerah lautan', '', '', '', 70, '2018-09-10', '2018-09-10 02:50:54'),
+(27, 21, 'Pembangungan proyek minyak dan gas di daerah lautan', '', '', '', 80, '2018-09-10', '2018-09-10 03:44:34'),
+(28, 21, 'Pembangungan proyek minyak dan gas di daerah lautan', '', '', '', 90, '2018-09-10', '2018-09-10 03:44:37'),
+(29, 26, 'Proyek pembeli alat kesehatan untuk rumah sakit negeri', '', '', '', 40, '2018-09-10', '2018-09-10 03:48:18'),
+(30, 26, 'Proyek pembeli alat kesehatan untuk rumah sakit negeri', '', '', '', 50, '2018-09-10', '2018-09-10 03:48:21'),
+(31, 19, 'Pembangunan wisata daerah gaung telang', '', '', '', 80, '2018-09-10', '2018-09-10 03:48:44');
 
 -- --------------------------------------------------------
 
@@ -400,9 +348,13 @@ CREATE TABLE `tbl_user` (
 --
 
 INSERT INTO `tbl_user` (`id`, `nama`, `no_telp`, `email`, `level`, `kornas`, `id_prov`, `korwil`, `username`, `password`, `last_access`, `date_entry`, `date_update`) VALUES
-(1, 'Kians Azizatikarna', '089611711597', 'kians_7fold@yahoo.com', 1, '', '', '', 'master', '121cc7e9d998dbea5fb9f00b75484aa9f7627240', '2018-09-07 11:13:45', '2018-09-04 11:14:16', '0000-00-00 00:00:00'),
-(3, 'admin', '0000', 'admin@gmail.com', 2, '', '', '', 'admin', '7b2e9f54cdff413fcde01f330af6896c3cd7e6cd', '2018-09-06 05:43:26', '2018-09-04 11:50:43', '0000-00-00 00:00:00'),
-(6, 'audit', '00000', 'audit@gmail.com', 2, '', '', '', 'audit', '48540491b5faaae678d275257ee06e7296a8d9d2', '2018-09-07 11:11:22', '2018-09-06 10:45:00', '0000-00-00 00:00:00');
+(1, 'Kians Azizatikarna', '089611711597', 'kians_7fold@yahoo.com', 1, '', '', '', 'master', '121cc7e9d998dbea5fb9f00b75484aa9f7627240', '2018-09-09 21:08:47', '2018-09-04 11:14:16', '0000-00-00 00:00:00'),
+(3, 'annisa sayban', '0000', 'annisa@gmail.com', 2, '', '', '', 'annisa', 'd2cad9f3070dd165dff2c450ce544cc7a9ec10d5', '2018-09-06 05:43:26', '2018-09-04 11:50:43', '2018-09-10 02:46:59'),
+(6, 'Dahlia', '00000', 'audit@gmail.com', 2, '', '', '', 'Dahlia', '93d983122cc9371bd0e86800d68249b37eea34f1', '2018-09-07 11:11:22', '2018-09-06 10:45:00', '2018-09-10 02:20:55'),
+(7, 'Faisal Ismawan', '222', 'mail.kianaaaa@gmail.com', 1, '', '', '', 'faisal', '59438e2d004cd3051968605bf935de37e4c90ab7', '0000-00-00 00:00:00', '2018-09-09 23:25:15', '2018-09-10 02:20:13'),
+(8, 'Kamal', '2222', 'aaa@gmail.com', 1, '', '', '', 'kamal', '4e00da2bd05698b8728096b5cf26e061b3071b8a', '0000-00-00 00:00:00', '2018-09-10 01:46:29', '2018-09-10 02:20:30'),
+(9, 'KOMAR', '0892288118', 'KOMAR@GMAIL.COM', 2, '', '', '', 'komar', '8ce28566038b22ae7042ee8374863bb57e6deee5', '0000-00-00 00:00:00', '2018-09-10 02:46:35', '0000-00-00 00:00:00'),
+(10, 'Lala', '0009900', 'lala@gmail.com', 1, '', '', '', 'lalalala', '4f5f1c7efb8f5334fb813a0a3930822a3f985db2', '0000-00-00 00:00:00', '2018-09-10 03:45:51', '2018-09-10 03:46:03');
 
 --
 -- Indexes for dumped tables
@@ -436,6 +388,12 @@ ALTER TABLE `tbl_kelurahan`
 -- Indexes for table `tbl_level`
 --
 ALTER TABLE `tbl_level`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `tbl_login_failed`
+--
+ALTER TABLE `tbl_login_failed`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -482,13 +440,13 @@ ALTER TABLE `tbl_user`
 -- AUTO_INCREMENT for table `tbl_dinas`
 --
 ALTER TABLE `tbl_dinas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `tbl_jenis_pekerjaan`
 --
 ALTER TABLE `tbl_jenis_pekerjaan`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `tbl_kecamatan`
@@ -509,28 +467,34 @@ ALTER TABLE `tbl_level`
   MODIFY `id` int(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
+-- AUTO_INCREMENT for table `tbl_login_failed`
+--
+ALTER TABLE `tbl_login_failed`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT for table `tbl_pesan_broadcast`
 --
 ALTER TABLE `tbl_pesan_broadcast`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `tbl_pesan_khusus`
 --
 ALTER TABLE `tbl_pesan_khusus`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `tbl_project`
 --
 ALTER TABLE `tbl_project`
-  MODIFY `idProject` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
+  MODIFY `idProject` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT for table `tbl_project_history`
 --
 ALTER TABLE `tbl_project_history`
-  MODIFY `idProjectHistory` int(5) NOT NULL AUTO_INCREMENT;
+  MODIFY `idProjectHistory` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- AUTO_INCREMENT for table `tbl_status`
@@ -542,7 +506,7 @@ ALTER TABLE `tbl_status`
 -- AUTO_INCREMENT for table `tbl_user`
 --
 ALTER TABLE `tbl_user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

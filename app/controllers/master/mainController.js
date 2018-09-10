@@ -250,17 +250,11 @@
             $scope.main.kuesioners          = response.data;
             $scope.main.kuesioners.headCsv  = Object.keys(response.data[0]);
 
-            $scope.capaianProv = function(prov){
-              return (filterFilter($scope.main.kuesioners, {valid_gabungan:'0',id_prov:prov.id}, true).length / filterFilter($scope.main.kuesioners, {id_prov:prov.id}, true).length) * 100;
-            }
-            $scope.capaianKab = function(kab){
-              return (filterFilter($scope.main.kuesioners, {valid_gabungan:'0',id_kab:kab.id}, true).length / filterFilter($scope.main.kuesioners, {id_kab:kab.id}, true).length) * 100;
-            }
             $scope.capaianKec = function(kec){
-              return (filterFilter($scope.main.kuesioners, {valid_gabungan:'0',id_kec:kec.id}, true).length / filterFilter($scope.main.kuesioners, {id_kec:kec.id}, true).length) * 100;
+              return (filterFilter($scope.main.kuesioners, {status:'1',idKec:kec.idKec}, true).length / filterFilter($scope.main.kuesioners, {idKec:kec.id}, true).length) * 100;
             }
             $scope.capaianKel = function(kel){
-              return (filterFilter($scope.main.kuesioners, {valid_gabungan:'0',id_kel:kel.id}, true).length / filterFilter($scope.main.kuesioners, {id_kel:kel.id}, true).length) * 100;
+              return (filterFilter($scope.main.kuesioners, {status:'1',idKel:kel.idKel}, true).length / filterFilter($scope.main.kuesioners, {idKel:kel.id}, true).length) * 100;
             }
           }
         }

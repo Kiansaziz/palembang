@@ -49,16 +49,16 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr dir-paginate="project in filteredSemua = (projects | filter:search | filter:search_global | filter:search_index) | orderBy:'kecamatan' | orderBy:predicate:reverse  | itemsPerPage:itemsize">
+                  <tr dir-paginate="project in filteredSemua = (projects | filter:search | filter:search_global | filter:search_index) | orderBy:'-mulai' | orderBy:predicate:reverse  | itemsPerPage:itemsize">
                     <td>{{$index + 1}}</td>
                     <td>{{project.kecamatan}}</td>
                     <td>{{project.kelurahan}}</td>
                     <td>{{project.dinas}}</td>
-                    <td>{{project.jenisPekerjaan}}</td>
-                    <td>{{project.mulai}}</td>
+                    <td>{{project.jenisPekerjaan}} </td>
+                    <td>{{project.mulai}}  </td>
                     <td>{{project.selesai}}</td>
                     <td align="right">{{project.persen}}%</td>
-                    <td>{{project.status}}</td>
+                    <td>{{project.status}} <input type="hidden" value="{{project.time}}" ></td>
                     <td>
                       <div class="row">
                         <div class="col-md-4">
@@ -142,4 +142,6 @@ $('.date-picker').datepicker({
   todayHighlight: true,
   format:'yyyy-mm-dd'
 })
+
+
 </script>

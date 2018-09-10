@@ -97,6 +97,7 @@ if($type == 'dataHistoryLihat')
                         );
   if ($proses->num_rows > 0) {
     while($rs = $proses->fetch_object()) {
+      
         $outpArr[] = $rs;
     }
   } else {
@@ -148,6 +149,19 @@ if ($type == 'update') {
           $persen     = $conn->real_escape_string(isset($post->persen) ? $post->persen : '');
           $query2     = "INSERT INTO tbl_project_history (idProjectHistory, idProject, ketSurvei, persentase,dateEntry,time) VALUES ('','$id','$ketSurvei','$persen',NOW(),NOW())";
           $runQuery2 = $conn->query($query2);
+          if ($runQuery2) {
+            $post       = json_decode(file_get_contents("php://input"));
+            $persen     = $conn->real_escape_string(isset($post->persen) ? $post->persen : '');
+            $id         = $conn->real_escape_string(isset($post->id) ? $post->id : '');
+            if ($post) {
+              $nilai    = $persen;
+              if ($nilai >= 100) {
+                  $status = "1";
+                  $query3   = "UPDATE tbl_project SET status='$status' WHERE idProject='$id'";
+                  $runQuery3= $conn->query($query3);
+              }
+            }
+          }
     $outp .= '{"status":"success",';
     $outp .= '"keterangan":"Berhasil Mengubah Data"}';
   } else {

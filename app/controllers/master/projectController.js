@@ -69,7 +69,6 @@
         var onSuccess = function(response){
           if (response.data == "error") {
             toastr.danger('Terjadi Kesalahan');
-             projectsSelesais();
           } else {
             $scope.projectsSelesais = response.data;
           }
@@ -88,7 +87,6 @@
         var onSuccess = function(response){
           if (response.data == "error") {
             toastr.danger('Terjadi Kesalahan');
-             projectsOnProgresss();
           } else {
             $scope.projectsOnProgresss = response.data;
           }
@@ -105,7 +103,6 @@
         var onSuccess = function(response){
           if (response.data == "error") {
             toastr.danger('Terjadi Kesalahan');
-             projectsOverdus();
           } else {
             $scope.projectsOverdus = response.data;
           }

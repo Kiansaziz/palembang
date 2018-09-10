@@ -47,6 +47,8 @@
           'id' : $scope.history.idProject,
           'ketSurvei' : $scope.history.ketSurvei,
           'persen' : $scope.history.persen,
+          'dateEntry' : $scope.history.dateEntry,
+          'selesai' : $scope.history.selesai,
         }).success(function(response){
           if (response.status == 'success') {
             dataHistoryLihat();

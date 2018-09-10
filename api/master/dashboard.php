@@ -33,9 +33,9 @@ if($type == 'capaian_percent')
   $proses = $conn->query("SELECT
                             tbl_kecamatan.kecamatan,
                             COUNT(tbl_project.idProject) target,
-                            SUM(CASE WHEN tbl_project.status = '1' THEN 1 ELSE 0 END) finish,
-                            SUM(CASE WHEN tbl_project.status = '2' THEN 1 ELSE 0 END) onprogress,
-                            SUM(CASE WHEN tbl_project.status = '3' THEN 1 ELSE 0 END) overdu
+                            SUM(CASE WHEN tbl_project.status = '1' THEN 1 ELSE 0 END) / COUNT(tbl_project.idProject) * 100 AS finish,
+                            SUM(CASE WHEN tbl_project.status = '2' THEN 1 ELSE 0 END) / COUNT(tbl_project.idProject) * 100 AS onprogress,
+                            SUM(CASE WHEN tbl_project.status = '3' THEN 1 ELSE 0 END) / COUNT(tbl_project.idProject) * 100 AS overdu
                           FROM tbl_project
                           INNER JOIN tbl_kecamatan ON tbl_project.idKec=tbl_kecamatan.idKec
                           GROUP BY tbl_project.idKec
@@ -81,7 +81,8 @@ if($type == 'jenis_kelamin')
   $proses = $conn->query("SELECT COUNT(tbl_project.status) as value,
                                         tbl_status.id as label
                                         FROM tbl_project
-                                        INNER JOIN tbl_status ON tbl_project.status = tbl_status.id
+                                        INNER JOIN tbl_status ON tbl_project.status = tbl_status.id 
+                                        GROUP BY tbl_status.status
                                         
                                         ");
   if ($proses->num_rows > 0) {
