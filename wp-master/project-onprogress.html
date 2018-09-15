@@ -17,19 +17,19 @@
                 <thead>
                   <tr>
                     <th width="3%">No <br><input type="text" class="form-control input-sm" placeholder="..." readOnly ng-show="mySearchFiled"></th>
-                    <th width="15%"><a ng-click="order('kecamatan')">Kecamatan</a><br><input type="text" class="form-control input-sm" placeholder="..." ng-model="search.kecamatan" ng-show="mySearchFiled"></th>
-                    <th width="15%"><a ng-click="order('kelurahan')">Kelurahan</a><br><input type="text" class="form-control input-sm" placeholder="..." ng-model="search.kelurahan" ng-show="mySearchFiled"></th>
-                    <th width="15%"><a ng-click="order('dinas')">Dinas Pemerintah</a><input type="text" class="form-control input-sm" placeholder="..." ng-model="search.dinas" ng-show="mySearchFiled"></th>
+                    <th width="10%"><a ng-click="order('kecamatan')">Kecamatan</a><br><input type="text" class="form-control input-sm" placeholder="..." ng-model="search.kecamatan" ng-show="mySearchFiled"></th>
+                    <th width="13%"><a ng-click="order('kelurahan')">Kelurahan</a><br><input type="text" class="form-control input-sm" placeholder="..." ng-model="search.kelurahan" ng-show="mySearchFiled"></th>
+                    <th width="12%"><a ng-click="order('dinas')">Dinas Pemerintah</a><input type="text" class="form-control input-sm" placeholder="..." ng-model="search.dinas" ng-show="mySearchFiled"></th>
                     <th width="15%"><a ng-click="order('jenis')">Jenis Pekerjaan</a><input type="text" class="form-control input-sm" placeholder="..." ng-model="search.jenis" ng-show="mySearchFiled"></th>
                     <th width="10%"><a ng-click="order('status')">Mulai</a><input type="text" class="form-control input-sm" placeholder="..." ng-model="search.status" ng-show="mySearchFiled"></th>
                     <th width="10%"><a ng-click="order('status')">Selesai</a><input type="text" class="form-control input-sm" placeholder="..." ng-model="search.status" ng-show="mySearchFiled"></th>
                     <th width="4%"><a ng-click="order('persen')">%</a><input type="text" class="form-control input-sm" placeholder="..." ng-model="search.persen" ng-show="mySearchFiled"></th>
                     <th width="10%"><a ng-click="order('status')">Status</a><input type="text" class="form-control input-sm" placeholder="..." ng-model="search.status" ng-show="mySearchFiled"></th>
-                    <th width="3%"></th>
+                    <th width="8%"></th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr dir-paginate="projectsOnProgress in filteredSemua = (projectsOnProgresss | filter:search | filter:search_global | filter:search_index) | orderBy:'nama' | orderBy:predicate:reverse  | itemsPerPage:itemsize">
+                  <tr dir-paginate="projectsOnProgress in filteredSemua = (projectsOnProgresss | filter:search | filter:search_global | filter:search_index) | orderBy:'-mulai' | orderBy:predicate:reverse  | itemsPerPage:itemsize">
                     <td>{{$index + 1}}</td>
                     <td>{{projectsOnProgress.kecamatan}}</td>
                     <td>{{projectsOnProgress.kelurahan}}</td>
@@ -40,7 +40,17 @@
                     <td align="right">{{projectsOnProgress.persen}}%</td>
                     <td>{{projectsOnProgress.status}}</td>
                     <td>
-                     <a title="Detail Data" href="#project/{{projectsOnProgress.idProject}}"><span class="fa fa-eye"></span></a>
+                     <div class="row">
+                        <div class="col-md-4">
+                          <a title="Detail Data" href="#project/{{projectsOnProgress.idProject}}"><span class="fa fa-eye"></span></a>
+                        </div>
+                        <div class="col-md-4">
+                          <a title="Detail Data" href="#project-history/{{projectsOnProgress.idProject}}"><span class="fa fa-folder-open"></span></a>
+                        </div>
+                        <div class="col-md-4">  
+                          <a  title="Hapus Data" ng-click="deleteProject(projectsOnProgress)" class="pull-right danger"><span class="fa fa-trash-o"></span></a>
+                        </div>
+                      </div>
                     </td>
 
                   </tr>

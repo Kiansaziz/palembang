@@ -22,11 +22,11 @@ if($type == 'dataProject')
                           INNER JOIN tbl_status g ON a.status=g.id
                           "
                         );
-  if ($proses->num_rows > 0) {
+  if ($proses->num_rows >= 0) {
     while($rs = $proses->fetch_object()) {
             if ($rs) {
                $status = '3';
-               $query = "UPDATE tbl_project SET status = '$status' WHERE selesai <= NOW() AND persen <100 ";
+               $query = "UPDATE tbl_project SET status = '$status' WHERE selesai <= NOW() AND persen <=100 ";
                $runQuery= $conn->query($query);
              }
         $outpArr[] = $rs;
@@ -48,7 +48,7 @@ if($type == 'dataProjectSelesai')
                           INNER JOIN tbl_status g ON a.status=g.id WHERE a.status = '1'
                           "
                         );
-  if ($proses->num_rows > 0) {
+  if ($proses->num_rows >= 0) {
     while($rs = $proses->fetch_object()) {
         $outpArr[] = $rs;
     }
@@ -63,7 +63,7 @@ if($type == 'dataProjectSelesaiCount')
   $proses = $conn->query("SELECT COUNT(*) AS total FROM tbl_project WHERE status='1'
                           "
                         );
-  if ($proses->num_rows > 0) {
+  if ($proses->num_rows >= 0) {
     while($rs = $proses->fetch_object()) {
         $outpArr[] = $rs;
     }
@@ -85,7 +85,7 @@ if($type == 'dataProjectOnProgress')
                           INNER JOIN tbl_status g ON a.status=g.id WHERE a.status = '2'
                           "
                         );
-  if ($proses->num_rows > 0) {
+  if ($proses->num_rows >= 0) {
     while($rs = $proses->fetch_object()) {
         $outpArr[] = $rs;
     }
@@ -106,7 +106,7 @@ if($type == 'dataProjectOverdu')
                           INNER JOIN tbl_status g ON a.status=g.id WHERE a.status = '3'
                           "
                         );
-  if ($proses->num_rows > 0) {
+  if ($proses->num_rows >= 0) {
     while($rs = $proses->fetch_object()) {
         $outpArr[] = $rs;
     }

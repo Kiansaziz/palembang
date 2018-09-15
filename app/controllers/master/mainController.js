@@ -149,7 +149,6 @@
       $scope.main.levels =
       [
         { 'id': 1,   'nama_level' : 'MASTER' },
-        { 'id': 2,   'nama_level' : 'AUDITOR' },
       ];
 
       $rootScope.$on("ParentMainProvinsi", function(){

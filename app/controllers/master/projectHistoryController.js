@@ -45,13 +45,14 @@
          $scope.updateProject = function(){
         $http.post('../api/master/project-history.php?type=update', {
           'id' : $scope.history.idProject,
-          'ketSurvei' : $scope.history.ketSurvei,
-          'persen' : $scope.history.persen,
+          'ketSurvei' : $scope.dataHistory.ketSurvei,
+          'persen' : $scope.dataHistory.persen,
           'dateEntry' : $scope.history.dateEntry,
-          'selesai' : $scope.history.selesai,
+          'selesai' : $scope.dataHistory.selesai,
         }).success(function(response){
           if (response.status == 'success') {
             dataHistoryLihat();
+            dataHistory();
             toastr.success(response.keterangan);
           } else if (response.status != 'success') {
             toastr.warning(response.keterangan);
@@ -60,6 +61,7 @@
           }
         });
       }
+      dataHistoryLihat();
 
       $scope.deleteHistory = function(detail){
         tanya=confirm("Apakah anda yakin akan menghapus "+ detail.idProjectHistory +" ? ")

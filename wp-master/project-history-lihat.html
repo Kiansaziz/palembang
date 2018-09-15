@@ -26,7 +26,7 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr dir-paginate="history in filteredSemua = (historys | filter:search | filter:search_global | filter:search_index) | orderBy:'nama' | orderBy:predicate:reverse  | itemsPerPage:itemsize">
+                  <tr dir-paginate="history in filteredSemua = (historys | filter:search | filter:search_global | filter:search_index) | orderBy:'-mulai' | orderBy:predicate:reverse  | itemsPerPage:itemsize">
                     <td>{{$index + 1}}</td>
                     <td>{{history.kecamatan}}</td>
                     <td>{{history.kelurahan}}</td>
@@ -38,7 +38,7 @@
                     <td>{{history.status}}</td>
                     <td>
                      <a title="Detail Data" href="#project-history-detail/{{history.idProjectHistory}}"><span class="fa fa-eye"></span></a>
-                      <a title="Hapus Data" ng-click="deleteHistory(history)" class="pull-right danger"><span class="fa fa-trash-o"></span></a>
+                      <a title="Hapus Data" ng-click="deleteHistory(history)" class="pull-right danger"><span class="fa fa-trash-o" ng-hide="history.persen == '100'"></span></a>
                     </td>
 
                   </tr>

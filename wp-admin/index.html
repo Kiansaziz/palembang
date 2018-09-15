@@ -71,13 +71,13 @@
           <li class="marquee" ng-if="main.pesan.broadcasts"><a><marquee><span ng-repeat="broadcast in main.pesan.broadcasts">{{$index + 1}}) {{broadcast.isi}} - ({{broadcast.dari}}) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> </marquee></a></li>
           <li class="dropdown user user-menu">
             <a class="dropdown-toggle" data-toggle="dropdown">
-              <img ng-src="{{getImg(profile)}}" class="user-image" alt="User Image">
+              <img src="../assets/images/muara.png" class="user-image" alt="User Image">
               <span class="hidden-xs">{{profile.nama}}</span>
             </a>
             <ul class="dropdown-menu">
               <!-- User image -->
               <li class="user-header">
-                <img ng-src="{{getImg(profile)}}" class="img-circle" alt="User Image">
+                <img src="../assets/images/muara.png" class="img-circle" alt="User Image">
                 <p>
                   {{profile.nama}} - {{profile.nama_level}}
                   <small>Survey Persepsi Publik TPPU-PT</small>
@@ -112,7 +112,7 @@
       <!-- Sidebar user panel -->
       <div class="user-panel">
         <div class="pull-left image">
-          <img ng-src="{{getImg(profile)}}" class="img-circle" alt="User Image">
+          <img src="../assets/images/muara.png" class="img-circle" alt="User Image">
         </div>
         <div class="pull-left info">
           <p>{{profile.nama}}</p>
@@ -139,58 +139,13 @@
             <i ng-class="{'pull-right fa fa-arrow-circle-right': $route.current.activetab == ''}"></i>
           </a>
         </li>
-        <li ng-class="{'active': $route.current.activetab == 'chart'}">
-          <a href="#chart">
-            <i class="fa fa-bar-chart-o"></i> <span>Chart</span>
-            <i ng-class="{'pull-right fa fa-arrow-circle-right': $route.current.activetab == 'chart'}"></i>
-          </a>
-        </li>
         <li ng-class="{'active': $route.current.activetab == 'pesan'}">
           <a href="#pesan">
             <i class="fa fa-envelope-o"></i> <span>Pesan</span>
             <i ng-class="{'pull-right fa fa-arrow-circle-right': $route.current.activetab == 'pesan'}"></i>
           </a>
         </li>
-        <li ng-class="{'active': $route.current.activetab == 'project'}">
-          <a href="#project">
-            <i class="fa fa-map-pin"></i> <span>Project</span>
-            <i ng-class="{'pull-right fa fa-arrow-circle-right': $route.current.activetab == 'project'}"></i>
-          </a>
-        </li>
-        <li ng-class="{'active': $route.current.activetab == 'dokumentasi'}">
-          <a href="#dokumentasi">
-            <i class="fa fa-book"></i> <span>Dokumentasi</span>
-            <i ng-class="{'pull-right fa fa-arrow-circle-right': $route.current.activetab == 'dokumentasi'}"></i>
-          </a>
-        </li>
-        <li class="header">GRUP</li>
-        <li class="treeview">
-          <a>
-            <i class="fa fa-pie-chart"></i>
-            <span>Grup Pertanyaan</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-          </a>
-          <ul class="treeview-menu">
-            <li><a href="#group/a"><i class="fa fa-angle-right"></i> Grup A</a></li>
-            <li><a href="#group/b"><i class="fa fa-angle-right"></i> Grup B</a></li>
-            <li><a href="#group/c"><i class="fa fa-angle-right"></i> Grup C</a></li>
-            <li><a href="#group/d"><i class="fa fa-angle-right"></i> Grup D</a></li>
-            <li><a href="#group/e"><i class="fa fa-angle-right"></i> Grup E</a></li>
-            <li><a href="#group/f"><i class="fa fa-angle-right"></i> Grup F</a></li>
-            <li><a href="#group/g"><i class="fa fa-angle-right"></i> Grup G</a></li>
-            <li><a href="#group/h"><i class="fa fa-angle-right"></i> Grup H</a></li>
-            <li><a href="#group/i"><i class="fa fa-angle-right"></i> Grup I</a></li>
-            <li><a href="#group/j"><i class="fa fa-angle-right"></i> Grup J</a></li>
-            <li><a href="#group/k"><i class="fa fa-angle-right"></i> Grup K</a></li>
-            <li><a href="#group/l"><i class="fa fa-angle-right"></i> Grup L</a></li>
-            <li><a href="#group/m"><i class="fa fa-angle-right"></i> Grup M</a></li>
-            <li><a href="#group/n"><i class="fa fa-angle-right"></i> Grup N</a></li>
-          </ul>
-        </li>
-      </ul>
-    </section>
+       
     <!-- /.sidebar -->
   </aside>
 

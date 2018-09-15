@@ -93,11 +93,6 @@
               <input type="text" name="selesai" ng-model="dataProject.selesai" class="form-control date-picker" placeholder="Selesai" required="">
              <span ng-show="form.selesai.$invalid && !form.selesai.$pristine"><i class="text-danger">Harus Di Isi</i></span>
             </div>
-             <div class="col-md-2">
-              <label>Persen</label>
-              <input type="text" name="persen" ng-model="dataProject.persen" class="form-control" placeholder="persentase" required="">
-             <span ng-show="form.persen.$invalid && !form.persen.$pristine"><i class="text-danger">Harus Di Isi</i></span>
-            </div>
             <div class="col-md-12" style="margin-top: 20px;">
               <button type="submit" class="btn btn-danger" ng-disabled="form.$invalid">Submit</button>
             </div>

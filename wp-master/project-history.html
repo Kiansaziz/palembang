@@ -18,8 +18,8 @@
 
       <div class="nav-tabs-custom">
         <ul class="nav nav-tabs">
-          <li class="active"><a data-target="#semua" data-toggle="tab"><span class="fa fa-plus"></span> TAMBAH</a></li>
-          <li><a data-target="#add" data-toggle="tab"> HISTORY PROJECT <span class="badge badge-pill badge-primary">{{historys.length}}</span></a></li>
+          <li class="active"><a data-target="#semua" data-toggle="tab"><span class="fa fa-plus"></span> UPDATE HISTORY</a></li>
+          <li><a data-target="#add" data-toggle="tab"> HISTORY PROJECT <span class="badge bg-blue">{{historys.length}}</span></a></li>
         </ul>
         <div class="tab-content">
 
@@ -51,19 +51,19 @@
              <div class="col-xs-6">
               <table class="table table-bordered">
                 <tr>
-                  <td>Desa/Kelurahan</td>
+                  <td>Dinas Pemerintahan</td>
                   <td>: {{history.dinas}}</td>
                 </tr>
                 <tr>
-                  <td>Kecamatan</td>
+                  <td>Jenis Pekerjaan</td>
                   <td>: {{history.jenisPekerjaan}}</td>
                 </tr>
                 <tr>
-                  <td>Kabupaten</td>
+                  <td>Mulai Project</td>
                   <td>: <b>{{history.mulai | date:'d MMMM y'}}<b></td>
                 </tr>
                 <tr>
-                  <td>Mulai Project</td>
+                  <td>Selesai Project</td>
                   <td>: <b>{{history.selesai | date:'d MMMM y'}}</b></td>
                 </tr>
               </table>
@@ -72,18 +72,21 @@
                 <div class="col-md-12" style="margin-bottom: 20px;">
                   <label>Keterangan Survei</label>
                   <input type="hidden" name="id" ng-model="history.idProject">
-                  <textarea type="text" name="ketSurvei" ng-model="history.ketSurvei" class="form-control" placeholder="Keterangan Survei......." required=""></textarea>
+                  <textarea type="text" name="ketSurvei" ng-model="dataHistory.ketSurvei" class="form-control" placeholder="Keterangan Survei......." required="" ng-disabled="history.persen == '100' || history.status == 'OVERDU'"></textarea>
                   <span ng-show="form.ketSurvei.$invalid && !form.ketSurvei.$pristine"><i class="text-danger">Harus Di Isi</i></span>
                 </div>
-      
+             
                  <div class="col-md-2">
                   <label>Persen</label>
-                  <input type="text" name="persen" ng-model="history.persen" class="form-control" placeholder="persentase" required="">
+                  <input type="number" min="{{history.persen}}" max="100" name="persen" ng-model="dataHistory.persen" class="form-control" placeholder="persentase" required="" ng-disabled="history.persen == '100' || history.status == 'OVERDU'">
                  <span ng-show="form.persen.$invalid && !form.persen.$pristine"><i class="text-danger">Harus Di Isi</i></span>
+            
                 </div>
+                 
                 <div class="col-md-12" style="margin-top: 20px;">
-                  <button type="submit" class="btn btn-danger" ng-disabled="form.$invalid">Submit</button>
+                  <button type="submit" class="btn btn-danger" ng-disabled="form.$invalid || history.persen == '100' || history.status == 'OVERDU'">Submit</button>
               </div>
+
           </form>
           </div>
         </div>
@@ -116,3 +119,98 @@ $('.date-picker').datepicker({
   format:'yyyy-mm-dd'
 })
 </script>
+<script>
+            function tampilkanPreview(gambar,idpreview){
+//                membuat objek gambar
+                var gb = gambar.files;
+                
+//                loop untuk merender gambar
+                for (var i = 0; i < gb.length; i++){
+//                    bikin variabel
+                    var gbPreview = gb[i];
+                    var imageType = /image.*/;
+                    var preview=document.getElementById(idpreview);            
+                    var reader = new FileReader();
+                    
+                    if (gbPreview.type.match(imageType)) {
+//                        jika tipe data sesuai
+                        preview.file = gbPreview;
+                        reader.onload = (function(element) { 
+                            return function(e) { 
+                                element.src = e.target.result; 
+                            }; 
+                        })(preview);
+ 
+    //                    membaca data URL gambar
+                        reader.readAsDataURL(gbPreview);
+                    }else{
+//                        jika tipe data tidak sesuai
+                        alert("Type file tidak sesuai. Khusus image.");
+                    }
+                   
+                }    
+            }
+
+            function tampilkanPreview1(gambar,idpreview){
+//                membuat objek gambar
+                var gb = gambar.files;
+                
+//                loop untuk merender gambar
+                for (var i = 0; i < gb.length; i++){
+//                    bikin variabel
+                    var gbPreview = gb[i];
+                    var imageType = /image.*/;
+                    var preview1=document.getElementById(idpreview);            
+                    var reader = new FileReader();
+                    
+                    if (gbPreview.type.match(imageType)) {
+//                        jika tipe data sesuai
+                        preview1.file = gbPreview;
+                        reader.onload = (function(element) { 
+                            return function(e) { 
+                                element.src = e.target.result; 
+                            }; 
+                        })(preview1);
+ 
+    //                    membaca data URL gambar
+                        reader.readAsDataURL(gbPreview);
+                    }else{
+//                        jika tipe data tidak sesuai
+                        alert("Type file tidak sesuai. Khusus image.");
+                    }
+                   
+                }    
+            }
+
+            function tampilkanPreview2(gambar,idpreview){
+//                membuat objek gambar
+                var gb = gambar.files;
+                
+//                loop untuk merender gambar
+                for (var i = 0; i < gb.length; i++){
+//                    bikin variabel
+                    var gbPreview = gb[i];
+                    var imageType = /image.*/;
+                    var preview2=document.getElementById(idpreview);            
+                    var reader = new FileReader();
+                    
+                    if (gbPreview.type.match(imageType)) {
+//                        jika tipe data sesuai
+                        preview2.file = gbPreview;
+                        reader.onload = (function(element) { 
+                            return function(e) { 
+                                element.src = e.target.result; 
+                            }; 
+                        })(preview2);
+ 
+    //                    membaca data URL gambar
+                        reader.readAsDataURL(gbPreview);
+                    }else{
+//                        jika tipe data tidak sesuai
+                        alert("Type file tidak sesuai. Khusus image.");
+                    }
+                   
+                }    
+            }
+        </script>
+
