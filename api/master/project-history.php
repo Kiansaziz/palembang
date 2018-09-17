@@ -48,12 +48,12 @@ if($type == 'dataHistoryDetail')
   $id                = $conn->real_escape_string($post->id);
   $proses           = $conn->query("SELECT * FROM tbl_project a
                           INNER JOIN tbl_project_history b ON a.idProject = b.idProject 
-                          INNER JOIN tbl_user c ON a.idUser=c.id
-                          INNER JOIN tbl_kecamatan d ON a.idKec=d.idKec
-                          INNER JOIN tbl_kelurahan e ON a.idKel=e.idKel
-                          INNER JOIN tbl_dinas f ON a.idDinas=f.id
-                          INNER JOIN tbl_jenis_pekerjaan g ON a.idJenisPekerjaan=g.id
-                          INNER JOIN tbl_status h ON a.status=h.id WHERE b.idProjectHistory = '$id'");
+                          INNER JOIN tbl_user d ON a.idUser=d.id
+                          INNER JOIN tbl_kecamatan e ON a.idKec=e.idKec
+                          INNER JOIN tbl_kelurahan f ON a.idKel=f.idKel
+                          INNER JOIN tbl_dinas g ON a.idDinas=g.id
+                          INNER JOIN tbl_jenis_pekerjaan h ON a.idJenisPekerjaan=h.id
+                          INNER JOIN tbl_status i ON a.status=i.id WHERE b.idProjectHistory = '$id'");
   if ($proses->num_rows > 0) {
     while($rs = $proses->fetch_object()) {
         $outp = $rs;
@@ -63,6 +63,28 @@ if($type == 'dataHistoryDetail')
   }
   echo json_encode($outp);
 }
+
+if($type == 'dataHistoryDetailImage')
+{
+  $post             = json_decode(file_get_contents("php://input"));
+  $id                = $conn->real_escape_string($post->id);
+  $proses = $conn->query("SELECT * FROM tbl_project a
+                          INNER JOIN tbl_project_history b ON a.idProject = b.idProject 
+                          INNER JOIN files c ON b.idProjectHistory=c.idProjectHistory
+                          WHERE b.idProjectHistory = '$id';
+                          "
+                        );
+  if ($proses->num_rows >= 0) {
+    while($rs = $proses->fetch_object()) {
+        $outpArr[] = $rs;
+    }
+  } else {
+    $outpArr[]=null;
+  }
+  echo json_encode($outpArr);
+}
+
+
 
 if ($type == 'insert') {
   $post     = json_decode(file_get_contents("php://input"));

@@ -63,7 +63,7 @@ var app = angular.module('app', ['ngRoute', 'toastr','angularUtils.directives.di
        .when("/project-history-detail/:id",{
         templateUrl   : "project-history-detail.html",
         controller    : "projectDetailHistory",
-        activetab     : 'project-history-lihat'
+        activetab     : 'project-history-detail'
       })
       .when("/info", {
           templateUrl : "info.html",

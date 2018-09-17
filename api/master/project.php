@@ -14,12 +14,12 @@ $type      = $conn->real_escape_string(htmlentities($_GET['type']));
 if($type == 'dataProject')
 {
   $proses = $conn->query("SELECT * FROM tbl_project a 
-                          INNER JOIN tbl_user b ON a.idUser=b.id
-                          INNER JOIN tbl_kecamatan c ON a.idKec=c.idKec
-                          INNER JOIN tbl_kelurahan d ON a.idKel=d.idKel
-                          INNER JOIN tbl_dinas e ON a.idDinas=e.id
-                          INNER JOIN tbl_jenis_pekerjaan f ON a.idJenisPekerjaan=f.id
-                          INNER JOIN tbl_status g ON a.status=g.id
+                          LEFT OUTER JOIN tbl_user b ON a.idUser=b.id
+                          LEFT OUTER JOIN  tbl_kecamatan c ON a.idKec=c.idKec
+                          LEFT OUTER JOIN  tbl_kelurahan d ON a.idKel=d.idKel
+                          LEFT OUTER JOIN   tbl_dinas e ON a.idDinas=e.id
+                          LEFT OUTER JOIN  tbl_jenis_pekerjaan f ON a.idJenisPekerjaan=f.id
+                          LEFT OUTER JOIN tbl_status g ON a.status=g.id
                           "
                         );
   if ($proses->num_rows >= 0) {
@@ -213,15 +213,16 @@ if($type == 'insert')
   $mulai    = $conn->real_escape_string(isset($post->mulai) ? $post->mulai : '');
   $selesai    = $conn->real_escape_string(isset($post->selesai) ? $post->selesai : '');
   $persen    = $conn->real_escape_string(isset($post->persen) ? $post->persen : '');
+  $judul    = $conn->real_escape_string(isset($post->judul) ? $post->judul : '');
   try {
      $DecodedDataArray = JWT::decode(
        $jwt,
        $secretKey,
        array(ALGORITHM)
      );
-     $dari     = $DecodedDataArray->data->id;
-     $query    = "INSERT INTO tbl_project (idProject,idKec,idKel,idUser,idDinas,idJenisPekerjaan,ketSurvei,mulai,selesai,persen,dateEntry,time,status) VALUES 
-     ('', '$idKec', '$idKel', '$dari','$idDinas','$idJenisPekerjaan','$ketSurvei','$mulai','$selesai','$persen',NOW(),NOW(),'2')";
+     $id     = $DecodedDataArray->data->id;
+     $query    = "INSERT INTO tbl_project (idProject,idKec,idKel,idUser,idDinas,idJenisPekerjaan,judul,ketSurvei,mulai,selesai,persen,dateEntry,time,status) VALUES 
+     ('', '$idKec', '$idKel', '$id','$idDinas','$idJenisPekerjaan','$judul','$ketSurvei','$mulai','$selesai','$persen',NOW(),NOW(),'2')";
      $runQuery = $conn->query($query);
 
      if ($runQuery) {
@@ -370,20 +371,18 @@ if($type == 'dataProjectHistory')
 if ($type == 'delete') {
   $post        = json_decode(file_get_contents("php://input"));
   $idProject          = $conn->real_escape_string(isset($post->idProject) ? $post->idProject : '');
-  $query      = "DELETE FROM tbl_project WHERE idProject = '$idProject'";
-  if ($conn->query($query)) {
-           $post        = json_decode(file_get_contents("php://input"));
-           $idProject          = $conn->real_escape_string(isset($post->idProject) ? $post->idProject : '');
-           $query2      = "DELETE FROM tbl_project_history WHERE idProject = '$idProject'";
-           $runQuery = $conn->query($query2);
-
-    $outp .= '{"status":"success",';
-    $outp .= '"keterangan":"Berhasil Menghapus Data"}';
-  } else {
-    $outp .= '{"status":"error",';
-    $outp .= '"keterangan":"Gagal Menghapus Data"}';
-  }
-  echo $outp;
+  $query_lihat      = "SELECT * FROM tbl_project_history WHERE idProject = '$idProject'";
+  $cek_query_lihat = $conn->query($query_lihat);
+  if ($cek_query_lihat->num_rows == 0) {
+            $str_delete = "DELETE FROM tbl_project WHERE idProject = '$idProject'";
+            $run_delete = $conn->query($str_delete);
+            $outp .= '{"status":"success",';
+            $outp .= '"keterangan":"Berhasil Menghapus Data"}';
+          } else {
+            $outp .= '{"status":"error",';
+            $outp .= '"keterangan":"Tidak Dapat Dihapus Karena Sudah Ada History Project"}';
+          }
+          echo $outp;
 }
 
 

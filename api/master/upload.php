@@ -1,18 +1,38 @@
-
 <?php
-$target_dir = "../assets/images/";
-$target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
-$uploadOk = 1;
-$imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
-// Check if image file is a actual image or fake image
-if(isset($_POST["submit"])) {
-    $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
-    if($check !== false) {
-        echo "File is an image - " . $check["mime"] . ".";
-        $uploadOk = 1;
-    } else {
-        echo "File is not an image.";
-        $uploadOk = 0;
-    }
-}
+
+	if(!empty($_FILES['file']['name'])){
+		$count = count($_FILES['file']['name']);
+		foreach ($_FILES['file']['name'] as $key => $filename){
+			$newFilename = time() . "_" . $filename;
+
+			$path = 'upload/' . $newFilename;
+
+			if(move_uploaded_file($_FILES['file']['tmp_name'][$key], $path)){
+				$sql = "INSERT INTO upload (filename) VALUES ('$newFilename')";
+				$query=$conn->query($sql);
+			}
+			 	
+			if($query){
+				if($count > 1){
+					$out['message'] = 'Files Uploaded Successfully';
+				}
+				else{
+					$out['message'] = 'File Uploaded Successfully';
+				}
+				
+			}
+			else{
+				$out['error'] = true;
+				$out['message'] = 'File Uploaded but not Saved';
+			}
+		
+		}
+	}
+	else{
+		$out['error'] = true;
+		$out['message'] = 'Upload Failed. File empty!';
+	}
+
+	echo json_encode($out);
 ?>
+

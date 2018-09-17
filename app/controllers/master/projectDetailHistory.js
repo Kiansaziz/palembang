@@ -24,6 +24,23 @@
       }
       dataHistoryDetail();
 
+       var dataHistoryDetailImage = function() {
+        var onSuccess = function(response){
+          if (response.data == 'null') {
+            $location.path('/project-history');
+          } else if (response.data == "error") {
+            toastr.warning('Terjadi Kesalahan');
+          } else {
+            $scope.images      = response.data;
+          }
+        }
+        var onError = function(reason){
+          toastr.error('Terjadi Kesalahan');
+        }
+        $http.post("../api/master/project-history.php?type=dataHistoryDetailImage",{"id":$routeParams.id}).then(onSuccess, onError);
+      }
+      dataHistoryDetailImage();
+
       var dataHistoryLihat = function() {
         var onSuccess = function(response){
           if (response.data == 'null') {

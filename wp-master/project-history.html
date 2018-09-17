@@ -79,8 +79,8 @@
                  <div class="col-md-2">
                   <label>Persen</label>
                   <input type="number" min="{{history.persen}}" max="100" name="persen" ng-model="dataHistory.persen" class="form-control" placeholder="persentase" required="" ng-disabled="history.persen == '100' || history.status == 'OVERDU'">
-                 <span ng-show="form.persen.$invalid && !form.persen.$pristine"><i class="text-danger">Harus Di Isi</i></span>
-            
+                 <span ng-show="form.persen.$invalid && !form.persen.$pristine"><i class="text-danger">Persentase harus lebih besar dari sebelumnya</i></span>
+                <!--  <input type="file" file-input="files" multiple> -->
                 </div>
                  
                 <div class="col-md-12" style="margin-top: 20px;">

@@ -17,15 +17,40 @@
                 <thead>
                   <tr>
                     <th width="3%">No <br><input type="text" class="form-control input-sm" placeholder="..." readOnly ng-show="mySearchFiled"></th>
-                    <th width="10%"><a ng-click="order('kecamatan')">Kecamatan</a><br><input type="text" class="form-control input-sm" placeholder="..." ng-model="search.kecamatan" ng-show="mySearchFiled"></th>
-                    <th width="13%"><a ng-click="order('kelurahan')">Kelurahan</a><br><input type="text" class="form-control input-sm" placeholder="..." ng-model="search.kelurahan" ng-show="mySearchFiled"></th>
-                    <th width="12%"><a ng-click="order('dinas')">Dinas Pemerintah</a><input type="text" class="form-control input-sm" placeholder="..." ng-model="search.dinas" ng-show="mySearchFiled"></th>
-                    <th width="15%"><a ng-click="order('jenis')">Jenis Pekerjaan</a><input type="text" class="form-control input-sm" placeholder="..." ng-model="search.jenis" ng-show="mySearchFiled"></th>
-                    <th width="10%"><a ng-click="order('status')">Mulai</a><input type="text" class="form-control input-sm" placeholder="..." ng-model="search.status" ng-show="mySearchFiled"></th>
-                    <th width="10%"><a ng-click="order('status')">Selesai</a><input type="text" class="form-control input-sm" placeholder="..." ng-model="search.status" ng-show="mySearchFiled"></th>
-                    <th width="4%"><a ng-click="order('persen')">%</a><input type="text" class="form-control input-sm" placeholder="..." ng-model="search.persen" ng-show="mySearchFiled"></th>
-                    <th width="10%"><a ng-click="order('status')">Status</a><input type="text" class="form-control input-sm" placeholder="..." ng-model="search.status" ng-show="mySearchFiled"></th>
-                    <th width="8%"></th>
+                    <th width="9%">
+                      <a ng-click="order('kecamatan')">Kecamatan</a> <br>
+                       <select class="form-control" name="idKec" ng-model="search.idKec" ng-change="changeKec(search)" required="" ng-show="mySearchFiled">
+                      <option value="">-Pilih</option>
+                      <option ng-repeat="kecamatan in main.kecamatans | orderBy:'kecamatan'" value="{{kecamatan.idKec}}">{{kecamatan.kecamatan}}</option>
+                </select>
+                    </th>
+                    <th width="9%">
+                      <a ng-click="order('kelurahan')">Kelurahan</a> <br>
+                      <select class="form-control" name="idKel" ng-model="search.idKel" required ng-show="mySearchFiled">
+                      <option value="">-Pilih</option>
+                      <option ng-repeat="kelurahan in main.kelurahans | filter:{'idKec':search.idKec}:true | orderBy:'kelurahan'" value="{{kelurahan.idKel}}">{{kelurahan.kelurahan}}</option>
+                </select>
+                    </th>
+                    <th width="17%">
+                      <a ng-click="order('dinas')">Dinas Pemerintahan</a> <br>
+                      <select class="input-sm" ng-model="search.dinas" ng-show="mySearchFiled">
+                        <option value=""></option>
+                        <option value="">-Pilih</option>
+                        <option ng-repeat="dinas in dinass" value="{{dinas.dinas}}">{{dinas.dinas}}</option>
+                      </select>
+                    </th>
+                    <th width="15%"><a ng-click="order('jenisPekerjaan')">Jeni Pekerjaan</a> <br>
+                      <select class="input-sm" ng-model="search.jenisPekerjaan" ng-show="mySearchFiled">
+                        <option value=""></option>
+                        <option value="">-Pilih</option>
+                        <option ng-repeat="jenis in jeniss" value="{{jenis.jenisPekerjaan}}">{{jenis.jenisPekerjaan}}</option>
+                      </select></th>
+                    <th width="10%"><a ng-click="order('judul')">Judul</a><input type="text" class="form-control input-sm" placeholder="..." ng-model="search.judul" ng-show="mySearchFiled"></th>
+                    <th width="8%"><a ng-click="order('mulai')">Mulai</a><input type="text" class="form-control input-sm" placeholder="..." ng-model="search.mulai" ng-show="mySearchFiled"></th>
+                    <th width="8%"><a ng-click="order('selesai')">Selesai</a><input type="text" class="form-control input-sm" placeholder="..." ng-model="search.selesai" ng-show="mySearchFiled"></th>
+                    <th width="2%"><a ng-click="order('persen')">%</a><input type="text" class="form-control input-sm" placeholder="..." ng-model="search.persen" ng-show="mySearchFiled"></th>
+                    <th width="6%"><a ng-click="order('status')">Status</a><input type="text" class="form-control input-sm" placeholder="..." ng-model="search.status" ng-show="mySearchFiled"></th>
+                    <th width="12%"></th>
                   </tr>
                 </thead>
                 <tbody>
@@ -35,6 +60,7 @@
                     <td>{{projectsOnProgress.kelurahan}}</td>
                     <td>{{projectsOnProgress.dinas}}</td>
                     <td>{{projectsOnProgress.jenisPekerjaan}}</td>
+                    <td>{{projectsOnProgress.judul}}</td>
                     <td>{{projectsOnProgress.mulai}}</td>
                     <td>{{projectsOnProgress.selesai}}</td>
                     <td align="right">{{projectsOnProgress.persen}}%</td>

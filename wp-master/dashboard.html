@@ -25,81 +25,8 @@
 <section class="content">
 
   <!-- Small boxes (Stat box) -->
-  <div class="row">
-    <div class="col-lg-3 col-xs-6">
-      <!-- small box -->
-      <div class="small-box bg-aqua">
-        <div class="inner text-center">
-          <div class="row">
-            <div class="col-md-4 col-xs-6">
-              <h3>{{main.provinsis.length}}</h3>
-              <p>Dinas </p>
-            </div>
-            <div class="col-md-4 col-xs-6">
-              <h3>{{main.kabupatens.length}}</h3>
-              <p>Jenis </p>
-            </div>
-            <div class="col-md-4 hidden-xs hidden-sm">
-              <small>{{main.kecamatans.length}} Kecamatan <br> {{main.kelurahans.length}} Kelurahan</small>
-            </div>
-          </div>
-        </div>
-        <a href="#/" class="small-box-footer">Detail <i class="fa fa-arrow-circle-right"></i></a>
-      </div>
-    </div>
-    <!-- ./col -->
-    <div class="col-lg-3 col-xs-6">
-      <!-- small box -->
-      <div class="small-box bg-green">
-        <div class="inner">
-          <h3>{{dashboard.kuesioner.jumlah}}</h3>
-          <p>Jumlah Project</p>
-        </div>
-        <div class="icon">
-          <i class="fa fa-files-o"></i>
-        </div>
-        <a href="#project" class="small-box-footer">Detail <i class="fa fa-arrow-circle-right"></i></a>
-      </div>
-    </div>
-    <!-- ./col -->
-    <div class="col-lg-3 col-xs-6">
-      <!-- small box -->
-      <div class="small-box bg-yellow">
-        <div class="inner text-center">
-          <div class="row" >
-            <div class="col-xs-4">
-              <p id="perkecil"><b>{{dashboard.kuesioner.onprogress}}</b></p>
-              <p>Progress</p>
-            </div>
-            <div class="col-xs-4">
-              <p id="perkecil" ><b>{{dashboard.kuesioner.finish}}</b></p>
-              <p>Finish</p>
-            </div>
-            <div class="col-xs-4">
-              <p id="perkecil"><b>{{dashboard.kuesioner.overdu}}</b></p>
-              <p>Overdu</p>
-            </div>
-          </div>
-        </div>
-        <a href="#info" class="small-box-footer">Detail <i class="fa fa-arrow-circle-right"></i></a>
-      </div>
-    </div>
-    <!-- ./col -->
-    <div class="col-lg-3 col-xs-6">
-      <!-- small box -->
-      <div class="small-box bg-red">
-        <div class="inner">
-          <h3>{{(dashboard.kuesioner.finish / dashboard.kuesioner.jumlah) * 100 | number}} <sup style="font-size: 20px">%</sup></h3>
-          <p>Persentase Finish</p>
-        </div>
-        <div class="icon">
-          <i class="fa fa-bar-chart-o"></i>
-        </div>
-        <a data-target="#" class="small-box-footer">&nbsp;</a>
-      </div>
-    </div>
-    <!-- ./col -->
-  </div>
+  
+    
   <!-- /.row -->
 
 
@@ -130,13 +57,13 @@
         </div>
       </div>
 
-    </div>
-
+    </div> -->
+<div class="row">
     <div class="col-md-12">
 
       <div class="box box-primary">
         <div class="box-header with-border">
-          <h3 class="box-title"><span class="fa fa-fire"></span> Capaian Persentase</h3>
+          <h3 class="box-title"><span class="fa fa-fire"></span>Project Per Jenis Pekerjaan</h3>
           <div class="box-tools pull-right">
             <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
             <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
@@ -150,17 +77,18 @@
             ng-if = "dashboard.capaian_percent != ''"
             bar-chart
             bar-data='dashboard.capaian_percent'
-            bar-x='kecamatan'
-            bar-y='["target", "onprogress", "finish", "overdu"]'
-            bar-labels='["Target", "onprogress", "finish", "overdu"]'>
+            bar-x='jenisPekerjaan'
+            bar-y='[ "onprogress", "finish", "overdu"]'
+            bar-labels='["ON PROGRESS", "FINISH", "OVERDU"]'>
           </div>
 
         </div>
       </div>
 
-    </div> -->
+    </div>
+</div>
 
-  </div>
+ 
   <div class="row">
     <div class="col-md-4">
 
@@ -173,7 +101,7 @@
             <div class="progress-bar" style="width: {{jumlahJenisKelamin('2') / totalJenisKelamin() * 100}}%"></div>
           </div>
           <span class="progress-description">
-            {{jumlahJenisKelamin('2') / totalJenisKelamin() * 100 | number}}% Dari {{totalJenisKelamin()}} Project
+            {{jumlahJenisKelamin('2') / totalJenisKelamin() * 100 | number : 2}}% Dari {{totalJenisKelamin()}} Project
           </span>
         </div>
       </div>
@@ -187,7 +115,7 @@
             <div class="progress-bar" style="width: {{jumlahJenisKelamin('1') / totalJenisKelamin() * 100}}%"></div>
           </div>
           <span class="progress-description">
-            {{jumlahJenisKelamin('1') / totalJenisKelamin() * 100 | number}}% Dari {{totalJenisKelamin()}} Project
+            {{jumlahJenisKelamin('1') / totalJenisKelamin() * 100 | number : 2}}% Dari {{totalJenisKelamin()}} Project
           </span>
         </div>
       </div>
@@ -201,18 +129,19 @@
             <div class="progress-bar" style="width: {{jumlahJenisKelamin('3') / totalJenisKelamin() * 100}}%"></div>
           </div>
           <span class="progress-description">
-            {{jumlahJenisKelamin('3') / totalJenisKelamin() * 100 | number}}% Dari {{totalJenisKelamin()}} Project
+            {{jumlahJenisKelamin('3') / totalJenisKelamin() * 100 | number : 2}}% Dari {{totalJenisKelamin()}} Project
           </span>
         </div>
       </div>
      
 
     </div>
+    <div>
     <div class="col-md-8">
 
       <div class="box box-primary">
         <div class="box-header with-border">
-          <h3 class="box-title"> <span class="fa fa-cubes"></span> Dinas Pemerintahan</h3>
+          <h3 class="box-title"> <span class="fa fa-cubes"></span>Project On Progress Per  Dinas </h3>
           <div class="box-tools pull-right">
             <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
             <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
@@ -249,13 +178,15 @@
       </div>
 
     </div>
+  </div>
+</div>
     
   <div class="row">
     <div class="col-md-6">
 
       <div class="box box-primary">
         <div class="box-header with-border">
-          <h3 class="box-title"><span class="fa fa-adjust"></span> Jenis Pekerjaan</h3>
+          <h3 class="box-title"><span class="fa fa-adjust"></span>Project Finish Per  Dinas</h3>
           <div class="box-tools pull-right">
             <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
             <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
@@ -297,7 +228,7 @@
 
       <div class="box box-primary">
         <div class="box-header with-border">
-          <h3 class="box-title"> <span class="fa fa-cubes"></span> PROGRESS</h3>
+          <h3 class="box-title"> <span class="fa fa-cubes"></span> Project Overdu Per  Dinas</h3>
           <div class="box-tools pull-right">
             <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
             <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>

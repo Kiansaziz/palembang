@@ -64,6 +64,11 @@
               </div>
             </div> 
             <div class="col-md-12" style="margin-bottom: 20px;">
+              <label>Judul</label>
+              <input type="text" name="judul" ng-model="dataProject.judul" class="form-control" placeholder="Judul..." required="" >
+              <span ng-show="form.judul.$invalid && !form.judul.$pristine"><i class="text-danger">Harus Di Isi</i></span>
+            </div>
+            <div class="col-md-12" style="margin-bottom: 20px;">
               <label>Keterangan Survei</label>
               <textarea type="text" name="ketSurvei" ng-model="dataProject.ketSurvei" class="form-control" placeholder="Keterangan Survei......." required=""></textarea>
               <span ng-show="form.ketSurvei.$invalid && !form.ketSurvei.$pristine"><i class="text-danger">Harus Di Isi</i></span>

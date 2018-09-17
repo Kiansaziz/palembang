@@ -43,7 +43,7 @@
             </div>
 
             <div class="col-xs-6">
-              <div class="pull-right" style="text-align: right; line-height: 1.2;">
+              <div class="pull-right" style="text-align: right; line-height: 1.2; margin-bottom: 20px;">
                 <img ng-src="../assets/images/muara.png" alt="" width="80px" /> <br>
                 <small>
                   Kabupaten Muara Enim <br>
@@ -83,6 +83,22 @@
                 </tr>
               </table>
             </div>
+             <div class="col-xs-6">
+              <table class="table table-bordered">
+                <tr>
+                  <td>Judul</td>
+                  <td>: {{history.judul}}</td>
+                </tr>
+                <tr>
+                  <td>Dinas Pemerintahan</td>
+                  <td>: {{history.dinas}}</td>
+                </tr>
+                <tr>
+                  <td>Jenis Pekerjaan</td>
+                  <td>: {{history.jenisPekerjaan}}</td>
+                </tr>
+              </table>
+            </div>
 
              <div class="col-xs-12">
               <div class="table table-responsive">
@@ -90,8 +106,6 @@
                 <thead>
                   <tr>
                     <th width="43%">Keterangan Hasil Survei</th>
-                    <th width="20%">Dinas Pemerintahan</th>
-                    <th width="15%">Jenis Pekerjaan</th>
                     <th width="7%">%</th>
                     <th width="15%">Status</th>
                   </tr>
@@ -99,19 +113,35 @@
                 <tbody>
                   <tr>
                     <td>{{history.ketSurvei}}</td>
-                    <td>{{history.dinas}}</td>
-                    <td>{{history.jenisPekerjaan}}</td>
                     <td>{{history.persentase}}%</td>
                     <td>{{history.status}}</td>
                   </tr>
                 </tbody>
               </table>
-
-
-
-            
-
             </div>
+
+            <div class="col-xs-12">
+              <div class="table table-responsive">
+              <table class="table table-bordered">
+                <thead>
+                  <tr>
+                    <th width="5%">No</th>
+                    <th width="95%">Gambar</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>{{$index + 1}}</td>
+                    <td>
+                        <div class="col-md-6" ng-repeat="image in images">                           
+                          <img ng-src="../api/upload/upload/files/{{image.file_name}}" width="100%" height="250px" class="thumbnail">
+                       </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
             <div class="col-xs-4 col-xs-offset-8">
 
               <span class="pull-right">{{profile.ba.hari}}, {{profile.ba.tanggal}} {{profile.ba.bulan}} 2018</span>
